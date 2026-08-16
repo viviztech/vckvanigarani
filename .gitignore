@@ -1,7 +1,8 @@
 # Scratch/build output — never committed
 tmp/
 
-# The backend+admin-web+mobile monorepo is its own separate git repo
+# Leftover empty dir from the vanigarani/vanigarani -> top-level move
+# (locked by a background process, could not be deleted yet)
 vanigarani/
 
 # public-site's own build artifacts (also covered by public-site/.gitignore,
@@ -9,6 +10,21 @@ vanigarani/
 public-site/node_modules/
 public-site/dist/
 public-site/.env
+
+# backend/admin-web/mobile also carry their own .gitignore files, which
+# still apply from this repo root — these are top-level-root duplicates
+# for clarity
+backend/node_modules/
+backend/dist/
+backend/generated/
+backend/.env
+admin-web/node_modules/
+admin-web/dist/
+admin-web/.env
+mobile/.env
+mobile/build/
+mobile/.dart_tool/
+
 *.log
 
 # OS/editor cruft

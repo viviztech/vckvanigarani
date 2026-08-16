@@ -1,0 +1,438 @@
+// Vanigar Ani Bearer Platform — feature 001 (Bearer & Hierarchy Register)
+// See specs/001-bearer-hierarchy-register/data-model.md for the design rationale.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// --- Post -------------------------------------------------------------
+// Configuration, not code (Constitution Principle I). A Post's `capabilities`
+// carries data-driven grants (e.g. FINANCE_VIEW) — never hardcode a check
+// against a post's `name` string.
+
+enum OrgLevel {
+  STATE
+  DISTRICT
+  BLOCK
+  MUNICIPALITY
+  TOWN_PANCHAYAT
+  VILLAGE
+}
+
+enum JurisdictionType {
+  STATE
+  DISTRICT
+  BLOCK
+  MUNICIPALITY
+  TOWN_PANCHAYAT
+  VILLAGE
+  PARLIAMENT_CONSTITUENCY
+  ASSEMBLY_CONSTITUENCY
+}
+
+enum PostCapability {
+  FINANCE_VIEW
+}
+
+// Which part of the organization a post belongs to — the main body, or one
+// of its sub-level bodies (e.g. a wing). Configuration on the Post row
+// (Constitution Principle I), not a name-string check.
+enum PostBody {
+  MAIN
+  SUB
+}
+
+model Post {
+  id                           String            @id @default(uuid())
+  name                         String
+  body                         PostBody          @default(MAIN)
+  applicableLevels             OrgLevel[]
+  // The JurisdictionUnit.type an assignment of this post must select from.
+  // Null means "infer from applicableLevels" (ordinary administrative posts).
+  jurisdictionTypeRule         JurisdictionType?
+  // FR-008: when true, the admin selects exactly ONE unit of
+  // jurisdictionTypeRule's type, and the assignment is actually stored
+  // against THAT UNIT'S CHILDREN — e.g. State Deputy Secretary: admin picks
+  // one Parliament Constituency, the assignment covers its Assembly
+  // Constituencies. Configuration on the Post row, not a name-string check.
+  jurisdictionExpandToChildren Boolean           @default(false)
+  capabilities                 PostCapability[]
+  // Top-to-bottom hierarchy order (State → District → Block/Town) for the
+  // public "Office Bearers" listing — data-driven per Constitution
+  // Principle I, never a name-string check in application code.
+  rank                         Int               @default(0)
+  active                       Boolean           @default(true)
+  createdById                  String?
+  createdBy                    Bearer?           @relation("PostCreatedBy", fields: [createdById], references: [id])
+  createdAt                    DateTime          @default(now())
+
+  assignments Assignment[]
+
+  @@index([active])
+}
+
+// --- JurisdictionUnit ---------------------------------------------------
+// Two independent trees distinguished by `tree` (Constitution Principle II):
+// ADMINISTRATIVE (State -> District -> Block/Municipality/Town Panchayat) and
+// ELECTORAL (State -> Parliament Constituency -> Assembly Constituency).
+// `path` is the materialized ancestor-id chain (root first, self last) used
+// for O(1) subtree checks — see specs/001.../research.md §2.
+
+enum JurisdictionTree {
+  ADMINISTRATIVE
+  ELECTORAL
+}
+
+enum JurisdictionStatus {
+  ACTIVE
+  RETIRED
+}
+
+model JurisdictionUnit {
+  id       String             @id @default(uuid())
+  tree     JurisdictionTree
+  type     JurisdictionType
+  name     String
+  parentId String?
+  parent   JurisdictionUnit?  @relation("JurisdictionParent", fields: [parentId], references: [id])
+  children JurisdictionUnit[] @relation("JurisdictionParent")
+  path     String[]
+  depth    Int
+  status   JurisdictionStatus @default(ACTIVE)
+
+  // Cross-tree convenience reference, ADMINISTRATIVE/DISTRICT <- ELECTORAL/
+  // ASSEMBLY_CONSTITUENCY only — deliberately NOT `parentId` (that stays
+  // tree-pure; an AC's real parent is always its Parliament Constituency).
+  // This is which district an Assembly Constituency's territory primarily
+  // falls in, for UI narrowing (e.g. the bearer home-address picker) — a
+  // simplification, since a constituency can straddle more than one
+  // district in real delimitation; this stores the primary one only.
+  districtId                       String?
+  district                         JurisdictionUnit?  @relation("AssemblyConstituencyDistrict", fields: [districtId], references: [id])
+  assemblyConstituenciesInDistrict JurisdictionUnit[] @relation("AssemblyConstituencyDistrict")
+
+  // Short mnemonic code (e.g. "MDU" for Madurai) — set only on
+  // ADMINISTRATIVE/DISTRICT rows, used as the district segment of a
+  // bearer's membership ID (VCK-VGA-<code>-00001). Permanent once IDs
+  // referencing it have been issued, so this is never auto-derived.
+  code String? @unique
+
+  assignmentJurisdictions   AssignmentJurisdiction[]
+  adminScopes               AdminScope[]
+  newsPostJurisdictions     NewsPostJurisdiction[]
+  bearersHomeAdministrative Bearer[]                 @relation("BearerHomeAdministrative")
+  bearersHomeElectoral      Bearer[]                 @relation("BearerHomeElectoral")
+  bearersHomeDistrict       Bearer[]                 @relation("BearerHomeDistrict")
+  registrationsHomeDistrict PendingRegistration[]    @relation("RegistrationHomeDistrict")
+
+  @@index([tree, type])
+  @@index([parentId])
+}
+
+// --- Bearer ---------------------------------------------------------------
+// Admin-provisioned only (Constitution Principle V, FR-015): a public
+// submission (PendingRegistration, below) never writes a Bearer row itself —
+// only an admin's Approve action does, via the same BearersService.create()
+// an admin-typed "New bearer" form uses.
+
+enum BearerStatus {
+  ACTIVE
+  INACTIVE
+}
+
+model Bearer {
+  id                  String       @id @default(uuid())
+  fullName            String
+  fatherOrHusbandName String
+  phone               String       @unique
+  email               String?
+  photoUrl            String?
+  address             String
+  // Free-text finer-grained locality within the home jurisdiction below —
+  // "ஊர்/பகுதி/தெரு" (habitation/place/street) doesn't correspond to a
+  // JurisdictionUnit level, so it isn't modeled as one.
+  habitationOrStreet  String
+  membershipNo        String       @unique
+  // Voter ID number (formerly a generic "ID proof reference" — this is what
+  // it's always meant in practice for this register).
+  idProofRef          String
+  status              BearerStatus @default(ACTIVE)
+  createdAt           DateTime     @default(now())
+
+  // Home address, independent of any Assignment's jurisdiction (where a
+  // bearer is POSTED can differ from where they LIVE). Two references
+  // because the administrative and electoral trees are independent
+  // (Constitution Principle II) — a physical address sits in both at once.
+  // Each FK stores the most specific unit; ancestors (District/State,
+  // PC/State) are recovered from that unit's own materialized `path`.
+  homeAdministrativeUnitId String?
+  homeAdministrativeUnit   JurisdictionUnit? @relation("BearerHomeAdministrative", fields: [homeAdministrativeUnitId], references: [id])
+  homeElectoralUnitId      String?
+  homeElectoralUnit        JurisdictionUnit? @relation("BearerHomeElectoral", fields: [homeElectoralUnitId], references: [id])
+
+  // Which district's counter/code the membership ID's district segment came
+  // from. Nullable at the DB level only for pre-existing rows (the bootstrap
+  // admin account); required at the application layer for every new bearer
+  // (BearersService.create). Distinct from homeAdministrativeUnitId/
+  // homeElectoralUnitId above — those are the precise leaf home address,
+  // this is always exactly a DISTRICT-type unit regardless of which tree the
+  // leaf address resolved through.
+  homeDistrictId String?
+  homeDistrict   JurisdictionUnit? @relation("BearerHomeDistrict", fields: [homeDistrictId], references: [id])
+
+  assignments        Assignment[]    @relation("BearerAssignments")
+  assignmentsCreated Assignment[]    @relation("AssignmentCreatedBy")
+  assignmentsClosed  Assignment[]    @relation("AssignmentClosedBy")
+  postsCreated       Post[]          @relation("PostCreatedBy")
+  adminScope         AdminScope?
+  auditLogEntries    AuditLogEntry[]
+  eventsCreated      Event[]         @relation("EventCreatedBy")
+  eventsClosed       Event[]         @relation("EventClosedBy")
+  contributions      Contribution[]
+  newsPostsAuthored  NewsPost[]
+
+  @@index([status])
+}
+
+// --- Assignment -------------------------------------------------------
+// The unit of history (Constitution Principle II): closed via `endDate`,
+// never deleted (FR-007).
+
+enum AssignmentStatus {
+  ACTIVE
+  CLOSED
+}
+
+model Assignment {
+  id          String           @id @default(uuid())
+  bearerId    String
+  bearer      Bearer           @relation("BearerAssignments", fields: [bearerId], references: [id])
+  postId      String
+  post        Post             @relation(fields: [postId], references: [id])
+  status      AssignmentStatus @default(ACTIVE)
+  startDate   DateTime
+  endDate     DateTime?
+  createdById String?
+  createdBy   Bearer?          @relation("AssignmentCreatedBy", fields: [createdById], references: [id])
+  closedById  String?
+  closedBy    Bearer?          @relation("AssignmentClosedBy", fields: [closedById], references: [id])
+  createdAt   DateTime         @default(now())
+
+  jurisdictions AssignmentJurisdiction[]
+
+  @@index([bearerId, status])
+  @@index([postId, status])
+}
+
+model AssignmentJurisdiction {
+  assignmentId       String
+  assignment         Assignment       @relation(fields: [assignmentId], references: [id])
+  jurisdictionUnitId String
+  jurisdictionUnit   JurisdictionUnit @relation(fields: [jurisdictionUnitId], references: [id])
+
+  @@id([assignmentId, jurisdictionUnitId])
+  @@index([jurisdictionUnitId])
+}
+
+// --- AdminScope ---------------------------------------------------------
+// Drives ScopedToJurisdictionGuard (specs/001.../research.md §4). A null
+// scopeJurisdictionUnitId (SUPER_ADMIN only) matches every path.
+
+enum AdminRole {
+  SUPER_ADMIN
+  STATE_ADMIN
+  DISTRICT_ADMIN
+  LOCAL_ADMIN
+}
+
+model AdminScope {
+  adminBearerId           String            @id
+  adminBearer             Bearer            @relation(fields: [adminBearerId], references: [id])
+  role                    AdminRole
+  scopeJurisdictionUnitId String?
+  scopeJurisdictionUnit   JurisdictionUnit? @relation(fields: [scopeJurisdictionUnitId], references: [id])
+}
+
+// --- AuditLogEntry --------------------------------------------------------
+// Satisfies FR-014: who created/closed each assignment (and post/jurisdiction/
+// bearer changes), and when.
+
+enum AuditAction {
+  ASSIGNMENT_CREATED
+  ASSIGNMENT_CLOSED
+  POST_CHANGED
+  JURISDICTION_CHANGED
+  BEARER_STATUS_CHANGED
+  EVENT_CREATED
+  EVENT_CLOSED
+  NEWS_POST_CREATED
+  NEWS_POST_EDITED
+  NEWS_POST_PUBLISHED
+  NEWS_POST_UNPUBLISHED
+  REGISTRATION_APPROVED
+  REGISTRATION_REJECTED
+}
+
+model AuditLogEntry {
+  id            String      @id @default(uuid())
+  actorBearerId String
+  actorBearer   Bearer      @relation(fields: [actorBearerId], references: [id])
+  action        AuditAction
+  targetType    String
+  targetId      String
+  metadata      Json?
+  createdAt     DateTime    @default(now())
+
+  @@index([targetType, targetId])
+  @@index([actorBearerId])
+}
+
+// --- Event & Contribution (feature 002) --------------------------------
+// Constitution Principle III (Financial Integrity & Auditability): a
+// Contribution is only ever written by a verified gateway webhook or the
+// reconciliation job (never a client-reported success), and only Super
+// Admin may create or close an Event. See
+// specs/002-contribution-events/data-model.md.
+
+enum EventStatus {
+  OPEN
+  CLOSED
+}
+
+model Event {
+  id                    String      @id @default(uuid())
+  title                 String
+  purpose               String
+  bannerUrl             String?
+  targetAmount          Decimal?    @db.Decimal(12, 2)
+  suggestedAmountByPost Json?
+  jurisdictionScopeIds  String[]
+  openDate              DateTime
+  closeDate             DateTime
+  status                EventStatus @default(OPEN)
+  createdById           String?
+  createdBy             Bearer?     @relation("EventCreatedBy", fields: [createdById], references: [id])
+  closedById            String?
+  closedBy              Bearer?     @relation("EventClosedBy", fields: [closedById], references: [id])
+  createdAt             DateTime    @default(now())
+
+  contributions Contribution[]
+
+  @@index([status])
+}
+
+enum ContributionStatus {
+  PENDING
+  VERIFIED
+  FAILED
+}
+
+model Contribution {
+  id               String             @id @default(uuid())
+  eventId          String
+  event            Event              @relation(fields: [eventId], references: [id])
+  bearerId         String
+  bearer           Bearer             @relation(fields: [bearerId], references: [id])
+  amount           Decimal            @db.Decimal(12, 2)
+  gatewayOrderId   String             @unique
+  gatewayPaymentId String?
+  idempotencyKey   String             @unique
+  status           ContributionStatus @default(PENDING)
+  receiptUrl       String?
+  verifiedAt       DateTime?
+  createdAt        DateTime           @default(now())
+
+  @@index([eventId, status])
+  @@index([bearerId])
+}
+
+// --- NewsPost (feature 003) ---------------------------------------------
+// Reuses feature 001's jurisdiction trees for targeting and feature 002's
+// NotificationService for delivery — see specs/003-news-announcements/data-model.md.
+
+enum NewsPostStatus {
+  DRAFT
+  PUBLISHED
+  UNPUBLISHED
+}
+
+model NewsPost {
+  id             String         @id @default(uuid())
+  title          String
+  bodyHtml       String
+  targetEveryone Boolean        @default(false)
+  status         NewsPostStatus @default(DRAFT)
+  authorId       String
+  author         Bearer         @relation(fields: [authorId], references: [id])
+  publishedAt    DateTime?
+  updatedAt      DateTime       @updatedAt
+  deepLinkSlug   String         @unique
+  createdAt      DateTime       @default(now())
+
+  jurisdictions NewsPostJurisdiction[]
+
+  @@index([status])
+}
+
+model NewsPostJurisdiction {
+  newsPostId         String
+  newsPost           NewsPost         @relation(fields: [newsPostId], references: [id])
+  jurisdictionUnitId String
+  jurisdictionUnit   JurisdictionUnit @relation(fields: [jurisdictionUnitId], references: [id])
+
+  @@id([newsPostId, jurisdictionUnitId])
+  @@index([jurisdictionUnitId])
+}
+
+// --- Public registration (approval queue) ----------------------------------
+// A public submission lands here, never directly as a Bearer (Constitution
+// Principle V). An admin's Approve action is what actually calls
+// BearersService.create() and produces a real Bearer + membership ID.
+
+enum PendingRegistrationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model PendingRegistration {
+  id                  String  @id @default(uuid())
+  fullName            String
+  fatherOrHusbandName String
+  phone               String
+  email               String?
+  address             String
+  habitationOrStreet  String
+  idProofRef          String
+  photoUrl            String?
+
+  homeDistrictId           String
+  homeDistrict             JurisdictionUnit @relation("RegistrationHomeDistrict", fields: [homeDistrictId], references: [id])
+  homeAdministrativeUnitId String?
+  homeElectoralUnitId      String?
+
+  status             PendingRegistrationStatus @default(PENDING)
+  submittedAt        DateTime                  @default(now())
+  reviewedAt         DateTime?
+  reviewedByBearerId String?
+  resultingBearerId  String?
+  rejectionReason    String?
+
+  @@index([status])
+}
+
+// --- DistrictMembershipCounter ----------------------------------------------
+// Backs the district segment of a membership ID (VCK-VGA-<code>-00001): one
+// row per district, atomically incremented via a single-row
+// `UPDATE ... RETURNING` (row-locked, race-safe under concurrent creates —
+// no need for a separate sequence per district).
+
+model DistrictMembershipCounter {
+  districtCode String @id
+  nextNumber   Int    @default(0)
+}
