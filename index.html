@@ -1,0 +1,1039 @@
+<!doctype html>
+<html lang="ta">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>விசிக வணிகர் அணி | இணையதளம் தயாராகிறது</title>
+  <meta name="description" content="விசிக வணிகர் அணியின் அதிகாரப்பூர்வ இணையதளம் புதிய வடிவில் தயாராகிக் கொண்டிருக்கிறது.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#061a38">
+  <link rel="canonical" href="https://vckvanigarani.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/vck-logo.png">
+  <link rel="apple-touch-icon" href="assets/vck-logo.png">
+
+  <style>
+    :root {
+      --ink: #061a38;
+      --ink-soft: #16365d;
+      --blue: #084b98;
+      --blue-bright: #0c64c8;
+      --red: #d51f3f;
+      --flag-blue: #0d72e0;
+      --flag-red: #ea1f2d;
+      --gold: #f4c35a;
+      --paper: #f4f7fb;
+      --white: #ffffff;
+      --muted: #63738a;
+      --line: rgba(6, 26, 56, 0.13);
+      --shadow: 0 22px 60px rgba(6, 26, 56, 0.13);
+      --radius: 28px;
+      --page: min(1180px, calc(100% - 40px));
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 18%, rgba(12, 100, 200, 0.09), transparent 24rem),
+        radial-gradient(circle at 92% 84%, rgba(213, 31, 63, 0.07), transparent 26rem),
+        var(--paper);
+      font-family: "Noto Sans Tamil", "Nirmala UI", Latha, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .skip-link {
+      position: fixed;
+      z-index: 999;
+      top: 12px;
+      left: 12px;
+      padding: 10px 14px;
+      color: var(--ink);
+      background: var(--white);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      transform: translateY(-150%);
+      transition: transform 180ms ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .flag-line {
+      position: fixed;
+      z-index: 100;
+      inset: 0 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 8px;
+      box-shadow: 0 1px 12px rgba(6, 26, 56, 0.18);
+    }
+
+    .flag-line span:first-child {
+      background: var(--flag-blue);
+    }
+
+    .flag-line span:last-child {
+      background: var(--flag-red);
+    }
+
+    .site-header {
+      width: var(--page);
+      margin: 0 auto;
+      padding: 34px 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 13px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      position: relative;
+      flex: 0 0 54px;
+      width: 54px;
+      height: 54px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: linear-gradient(145deg, var(--flag-blue) 0 48%, var(--flag-red) 48% 100%);
+      border: 3px solid var(--white);
+      border-radius: 50%;
+      box-shadow: 0 8px 24px rgba(6, 26, 56, 0.17);
+      isolation: isolate;
+    }
+
+    .brand-mark::after {
+      content: "★";
+      position: absolute;
+      z-index: -1;
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 42px;
+      line-height: 1;
+      transform: rotate(-9deg);
+    }
+
+    .brand-mark__fallback {
+      font-family: "Anek Tamil", "Nirmala UI", sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.28);
+    }
+
+    .brand-mark__image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: var(--white);
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 2px;
+      line-height: 1.2;
+    }
+
+    .brand-copy strong {
+      font-family: "Anek Tamil", "Nirmala UI", sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .brand-copy span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .domain-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 42px;
+      padding: 0 16px;
+      color: var(--ink-soft);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 8px 28px rgba(6, 26, 56, 0.06);
+      backdrop-filter: blur(12px);
+    }
+
+    .domain-chip::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: #26a269;
+      border: 3px solid rgba(38, 162, 105, 0.16);
+      border-radius: 50%;
+      box-sizing: content-box;
+    }
+
+    main {
+      width: var(--page);
+      margin: 0 auto;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 610px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(360px, 0.9fr);
+      background: var(--ink);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      opacity: 0.18;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(90deg, #000, transparent 65%);
+    }
+
+    .hero-copy {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: clamp(50px, 5vw, 70px);
+      color: var(--white);
+    }
+
+    .hero-copy > * {
+      max-width: 100%;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 20px;
+      color: #cbd9ec;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--flag-blue) 0 50%, var(--flag-red) 50% 100%);
+      border-radius: 2px;
+    }
+
+    h1,
+    h2,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 670px;
+      margin-bottom: 24px;
+      font-family: "Anek Tamil", "Nirmala UI", sans-serif;
+      font-size: clamp(50px, 4.8vw, 64px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+    }
+
+    h1 .title-line {
+      display: block;
+    }
+
+    h1 .accent {
+      display: block;
+      color: transparent;
+      background: linear-gradient(92deg, #ffffff 0 18%, #b9d8ff 52%, #ffffff 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .lead {
+      max-width: 620px;
+      margin-bottom: 32px;
+      color: #bfcde0;
+      font-size: clamp(15px, 1.7vw, 18px);
+      line-height: 1.95;
+    }
+
+    .build-status {
+      width: fit-content;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 48px;
+      padding: 0 18px;
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      backdrop-filter: blur(14px);
+    }
+
+    .status-dot {
+      position: relative;
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px rgba(244, 195, 90, 0.13);
+    }
+
+    .status-dot::after {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border: 1px solid rgba(244, 195, 90, 0.55);
+      border-radius: inherit;
+      animation: status-pulse 2.3s ease-out infinite;
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 100%;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 48% 48%, rgba(255, 255, 255, 0.08), transparent 41%),
+        linear-gradient(145deg, rgba(12, 100, 200, 0.25), rgba(213, 31, 63, 0.16));
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-art::before {
+      content: "★";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: rgba(255, 255, 255, 0.035);
+      font-family: Arial, sans-serif;
+      font-size: clamp(420px, 47vw, 700px);
+      line-height: 1;
+      transform: translate(-50%, -49%) rotate(-10deg);
+    }
+
+    .flag-card {
+      position: relative;
+      width: min(78%, 380px);
+      aspect-ratio: 1.48;
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      overflow: hidden;
+      border: 8px solid rgba(255, 255, 255, 0.92);
+      border-radius: 24px;
+      box-shadow: 0 36px 80px rgba(0, 0, 0, 0.34);
+      transform: rotate(4deg);
+      animation: card-arrive 850ms cubic-bezier(0.2, 0.85, 0.35, 1) both;
+    }
+
+    .flag-card__red {
+      background: var(--flag-red);
+    }
+
+    .flag-card__blue {
+      background: var(--flag-blue);
+    }
+
+    .flag-card__star {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 36%;
+      aspect-ratio: 1;
+      color: var(--white);
+      filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.16));
+      transform: translate(-50%, -50%);
+    }
+
+    .flag-card__image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: var(--white);
+    }
+
+    .flag-caption {
+      position: absolute;
+      right: 28px;
+      bottom: 28px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.62);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      writing-mode: vertical-rl;
+    }
+
+    .notice-bar {
+      position: relative;
+      z-index: 2;
+      width: calc(100% - 70px);
+      margin: -30px auto 0;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 18px;
+      padding: 19px 22px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(6, 26, 56, 0.09);
+      border-radius: 18px;
+      box-shadow: 0 15px 42px rgba(6, 26, 56, 0.12);
+      backdrop-filter: blur(16px);
+    }
+
+    .notice-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: var(--blue);
+      background: #e8f1fc;
+      border-radius: 13px;
+    }
+
+    .notice-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .notice-copy {
+      min-width: 0;
+    }
+
+    .notice-copy strong,
+    .notice-copy span {
+      display: block;
+    }
+
+    .notice-copy strong {
+      margin-bottom: 3px;
+      font-family: "Anek Tamil", "Nirmala UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.25;
+    }
+
+    .notice-copy span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .notice-domain {
+      color: var(--ink-soft);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .members {
+      padding: 104px 0 74px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr minmax(300px, 0.72fr);
+      align-items: end;
+      gap: 48px;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-family: "Anek Tamil", "Nirmala UI", sans-serif;
+      font-size: clamp(34px, 4.5vw, 54px);
+      font-weight: 750;
+      line-height: 1.12;
+      letter-spacing: -0.025em;
+    }
+
+    .section-description {
+      margin-bottom: 2px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .member-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+      gap: 18px;
+    }
+
+    .member-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 345px;
+      display: flex;
+      flex-direction: column;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: 0 10px 34px rgba(6, 26, 56, 0.06);
+      transition: transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .member-card::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--flag-blue) 0 50%, var(--flag-red) 50% 100%);
+      transform: scaleX(0.35);
+      transform-origin: left;
+      transition: transform 260ms ease;
+    }
+
+    .member-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 48px rgba(6, 26, 56, 0.12);
+    }
+
+    .member-card:hover::after {
+      transform: scaleX(1);
+    }
+
+    .member-photo {
+      position: relative;
+      min-height: 320px;
+      aspect-ratio: 4 / 4.35;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      color: #8ea2bd;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.38), transparent),
+        #e6edf7;
+    }
+
+    .member-photo::before {
+      content: "";
+      position: absolute;
+      width: 145px;
+      height: 145px;
+      background: rgba(255, 255, 255, 0.52);
+      border-radius: 50%;
+    }
+
+    .member-photo svg {
+      position: relative;
+      z-index: 1;
+      width: 72px;
+      height: 72px;
+      opacity: 0.72;
+    }
+
+    .member-photo img {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .photo-label {
+      position: absolute;
+      z-index: 3;
+      top: 14px;
+      left: 14px;
+      padding: 6px 9px;
+      color: var(--ink-soft);
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      backdrop-filter: blur(8px);
+    }
+
+    .member-info {
+      flex: 1;
+      padding: 19px 19px 21px;
+    }
+
+    .member-info h3 {
+      margin: 0 0 5px;
+      font-family: "Anek Tamil", "Nirmala UI", sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .member-info p {
+      margin-bottom: 0;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .site-footer {
+      width: var(--page);
+      margin: 0 auto;
+      padding: 26px 0 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .footer-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink-soft);
+      font-weight: 700;
+    }
+
+    .footer-mark::before {
+      content: "★";
+      color: var(--red);
+      font-family: Arial, sans-serif;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @keyframes status-pulse {
+      0% {
+        opacity: 0.8;
+        transform: scale(0.45);
+      }
+      85%, 100% {
+        opacity: 0;
+        transform: scale(1.55);
+      }
+    }
+
+    @keyframes card-arrive {
+      from {
+        opacity: 0;
+        transform: translateY(30px) rotate(8deg) scale(0.94);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) rotate(4deg) scale(1);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-copy {
+        padding-bottom: 58px;
+      }
+
+      .hero-art {
+        min-height: 400px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-left: 0;
+      }
+
+      .flag-card {
+        width: min(62%, 370px);
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .section-description {
+        max-width: 630px;
+      }
+
+      .member-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 680px) {
+      :root {
+        --page: min(100% - 24px, 1180px);
+        --radius: 22px;
+      }
+
+      .site-header {
+        padding-top: 27px;
+      }
+
+      .brand-mark {
+        flex-basis: 46px;
+        width: 46px;
+        height: 46px;
+      }
+
+      .brand-copy strong {
+        font-size: 16px;
+      }
+
+      .brand-copy span {
+        font-size: 9px;
+        letter-spacing: 0.08em;
+      }
+
+      .domain-chip {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+        border-radius: 24px;
+      }
+
+      .hero-copy {
+        padding: 52px 25px 46px;
+      }
+
+      h1 {
+        font-size: clamp(33px, 10.5vw, 46px);
+        letter-spacing: -0.025em;
+      }
+
+      .lead {
+        line-height: 1.85;
+      }
+
+      .build-status {
+        width: 100%;
+        min-height: 0;
+        align-items: flex-start;
+        padding: 13px 15px;
+        border-radius: 17px;
+        line-height: 1.65;
+      }
+
+      .status-dot {
+        flex: 0 0 10px;
+        margin-top: 5px;
+      }
+
+      .hero-art {
+        min-height: 330px;
+      }
+
+      .flag-card {
+        width: min(75%, 315px);
+        border-width: 6px;
+        border-radius: 19px;
+      }
+
+      .flag-caption {
+        right: 15px;
+        bottom: 17px;
+      }
+
+      .notice-bar {
+        width: calc(100% - 26px);
+        grid-template-columns: auto 1fr;
+        gap: 13px;
+        margin-top: -22px;
+        padding: 15px;
+      }
+
+      .notice-domain {
+        display: none;
+      }
+
+      .members {
+        padding: 82px 0 58px;
+      }
+
+      .member-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .member-card {
+        min-height: 0;
+        display: grid;
+        grid-template-columns: clamp(126px, 37vw, 146px) 1fr;
+      }
+
+      .member-photo {
+        min-height: 180px;
+        aspect-ratio: auto;
+      }
+
+      .member-photo::before {
+        width: 86px;
+        height: 86px;
+      }
+
+      .member-photo svg {
+        width: 48px;
+        height: 48px;
+      }
+
+      .member-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 18px;
+      }
+
+      .photo-label {
+        top: 9px;
+        left: 9px;
+        font-size: 8px;
+      }
+
+      .site-footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">முதன்மை உள்ளடக்கத்திற்குச் செல்லவும்</a>
+  <div class="flag-line" aria-hidden="true"><span></span><span></span></div>
+
+  <header class="site-header" aria-label="தளத் தலைப்பு">
+    <div class="brand">
+      <div class="brand-mark" aria-label="விசிக வணிகர் அணி சின்னம்">
+        <span class="brand-mark__fallback">வ.அ</span>
+        <img class="brand-mark__image" id="site-logo" alt="விசிக வணிகர் அணி இலச்சினை" hidden>
+      </div>
+      <div class="brand-copy">
+        <strong>விசிக வணிகர் அணி</strong>
+        <span>Official Website</span>
+      </div>
+    </div>
+
+    <span class="domain-chip" aria-label="இணையதள முகவரி">vckvanigarani.com</span>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">விடுதலைச் சிறுத்தைகள் கட்சி · வணிகர் அணி</p>
+        <h1 id="hero-title"><span class="title-line">புதிய</span><span class="title-line">இணையதளம்</span><span class="title-line accent">தயாராகிறது.</span></h1>
+        <p class="lead">அதிகாரப்பூர்வ தகவல்கள், அறிவிப்புகள் மற்றும் மாநில நிர்வாகிகள் விபரங்களை ஒரே இடத்தில் வழங்கும் எங்கள் இணையதளம் விரைவில் உங்களைச் சந்திக்கும்.</p>
+        <div class="build-status" role="status">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>இணையதள உருவாக்கப் பணி நடைபெற்று வருகிறது</span>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-label="கட்சிக் கொடிக்கான இடம்">
+        <div class="flag-card">
+          <span class="flag-card__blue"></span>
+          <span class="flag-card__red"></span>
+          <svg class="flag-card__star" viewBox="0 0 100 100" aria-hidden="true">
+            <path fill="currentColor" d="M50 4 61.2 37.2H96L67.8 57.6 78.6 91 50 70.3 21.4 91l10.8-33.4L4 37.2h34.8L50 4Z"/>
+          </svg>
+          <img class="flag-card__image" id="site-flag" alt="விடுதலைச் சிறுத்தைகள் கட்சிக் கொடி" hidden>
+        </div>
+        <p class="flag-caption">VCK · VANIGAR ANI</p>
+      </div>
+    </section>
+
+    <aside class="notice-bar" aria-label="தள நிலை அறிவிப்பு">
+      <span class="notice-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v2M5.64 5.64l1.42 1.42M3 12h2m.64 6.36 1.42-1.42M12 19v2m6.36-2.64-1.42-1.42M19 12h2m-2.64-6.36-1.42 1.42"/>
+          <circle cx="12" cy="12" r="4"/>
+        </svg>
+      </span>
+      <span class="notice-copy">
+        <strong>விரைவில் முழுமையான இணையதளம்</strong>
+        <span>புதிய செய்திகள் மற்றும் நிர்வாகிகள் விவரங்களுடன்</span>
+      </span>
+      <span class="notice-domain">www.vckvanigarani.com</span>
+    </aside>
+
+    <section class="members" aria-labelledby="members-title">
+      <div class="section-head">
+        <div>
+          <span class="section-kicker">State Office Bearers</span>
+          <h2 id="members-title">மாநில நிர்வாகிகள்</h2>
+        </div>
+        <p class="section-description">விசிக வணிகர் அணியின் மாநில நிர்வாகிகள் மற்றும் அவர்களின் பொறுப்பு விவரங்கள்.</p>
+      </div>
+
+      <div class="member-grid" id="member-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>© <span id="current-year"></span> விசிக வணிகர் அணி. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</span>
+    <span class="footer-mark">vckvanigarani.com</span>
+  </footer>
+
+  <script>
+    /* ================================================================
+       CONTENT SETTINGS
+       Add future member photos, names and roles here. Only the values
+       in this block need to be updated.
+       ================================================================ */
+    const siteAssets = {
+      logo: "assets/vck-logo.png",
+      flag: ""  // Example: "assets/flag.png"
+    };
+
+    const stateMembers = [
+      {
+        name: "ந. செல்லத்துரை",
+        role: "முதன்மைச் செயலாளர்",
+        photo: "assets/members/member-from-pdf.webp"
+      },
+      {
+        name: "ந. செல்வராசு",
+        role: "மாநில ஒருங்கிணைப்பாளர்",
+        photo: "assets/members/selvarasu.webp"
+      },
+      {
+        name: "இரா. கலைவாணன்",
+        role: "மாநில நிதிச் செயலாளர்",
+        photo: "assets/members/ira-kalaivanan.webp"
+      }
+      // Add more members using the same format.
+      // { name: "முழுப் பெயர்", role: "மாநிலப் பொறுப்பு", photo: "assets/members/name.jpg" }
+    ];
+
+    const personIcon = `
+      <svg viewBox="0 0 80 80" fill="none" aria-hidden="true">
+        <circle cx="40" cy="29" r="14" fill="currentColor"/>
+        <path d="M15 70c2.1-14 11.4-22 25-22s22.9 8 25 22" fill="currentColor"/>
+      </svg>`;
+
+    function loadOptionalImage(id, source) {
+      if (!source) return;
+      const image = document.getElementById(id);
+      image.hidden = false;
+      image.src = source;
+      image.addEventListener("error", () => {
+        image.hidden = true;
+      }, { once: true });
+    }
+
+    function memberCard(member) {
+      const article = document.createElement("article");
+      article.className = "member-card";
+
+      const photo = document.createElement("div");
+      photo.className = "member-photo";
+      photo.innerHTML = `${personIcon}<span class="photo-label">புகைப்படம்</span>`;
+
+      if (member.photo) {
+        const image = document.createElement("img");
+        image.src = member.photo;
+        image.alt = `${member.name} அவர்களின் புகைப்படம்`;
+        image.loading = "eager";
+        image.decoding = "async";
+        image.addEventListener("load", () => {
+          photo.querySelector(".photo-label")?.remove();
+        }, { once: true });
+        image.addEventListener("error", () => image.remove(), { once: true });
+        photo.appendChild(image);
+      }
+
+      const info = document.createElement("div");
+      info.className = "member-info";
+
+      const name = document.createElement("h3");
+      name.textContent = member.name;
+
+      const role = document.createElement("p");
+      role.textContent = member.role;
+
+      info.append(name, role);
+      article.append(photo, info);
+      return article;
+    }
+
+    const memberGrid = document.getElementById("member-grid");
+    stateMembers.forEach((member) => memberGrid.appendChild(memberCard(member)));
+
+    loadOptionalImage("site-logo", siteAssets.logo);
+    loadOptionalImage("site-flag", siteAssets.flag);
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

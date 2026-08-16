@@ -1,0 +1,21 @@
+# Scratch/build output — never committed
+tmp/
+
+# The backend+admin-web+mobile monorepo is its own separate git repo
+vanigarani/
+
+# public-site's own build artifacts (also covered by public-site/.gitignore,
+# repeated here since this .gitignore is at the repo root)
+public-site/node_modules/
+public-site/dist/
+public-site/.env
+*.log
+
+# OS/editor cruft
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Local agent tool state — not meant for version control
+.claude/

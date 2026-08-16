@@ -1,0 +1,6 @@
+tmp/
+output/
+*.pdf
+*.log
+.git/
+.gitignore
