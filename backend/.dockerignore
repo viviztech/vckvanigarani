@@ -1,0 +1,11 @@
+node_modules
+dist
+generated
+.env
+.env.*
+storage/receipts/*
+tests
+__mocks__
+.git
+*.log
+coverage
