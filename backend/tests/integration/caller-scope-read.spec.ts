@@ -50,6 +50,7 @@ describe('CallerScopeService.resolveForRead (integration)', () => {
       data: {
         fullName: `ReadScope ${suffix}`,
         phone: `+9180000000${suffix}`,
+        email: `read-scope-${suffix}@test.local`,
         address: 'test',
         fatherOrHusbandName: 'test',
         habitationOrStreet: 'test',

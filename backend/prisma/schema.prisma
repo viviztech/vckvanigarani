@@ -150,7 +150,9 @@ model Bearer {
   fullName            String
   fatherOrHusbandName String
   phone               String       @unique
-  email               String?
+  // Login/registration identity for OTP purposes (see auth module) — phone
+  // stays required too, as the dedup key bearer creation upserts on.
+  email               String       @unique
   photoUrl            String?
   address             String
   // Free-text finer-grained locality within the home jurisdiction below —
@@ -405,7 +407,8 @@ model PendingRegistration {
   fullName            String
   fatherOrHusbandName String
   phone               String
-  email               String?
+  // OTP identity for this submission (see auth module) — required.
+  email               String
   address             String
   habitationOrStreet  String
   idProofRef          String

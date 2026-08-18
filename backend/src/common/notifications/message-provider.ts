@@ -2,10 +2,10 @@ import { Injectable, Logger } from '@nestjs/common';
 
 /**
  * Vendor-agnostic SMS/WhatsApp text delivery for general notifications
- * (receipts, reminders, news). Deliberately separate from auth's SmsProvider
- * — OTP delivery has different security/rate-limit needs than a receipt or
- * reminder, even if a real deployment happens to route both through the
- * same underlying vendor account.
+ * (receipts, reminders, news). Deliberately separate from auth's
+ * EmailProvider — OTP delivery has different security/rate-limit needs than
+ * a receipt or reminder, even if a real deployment happens to route both
+ * through the same underlying vendor account.
  */
 export const MESSAGE_PROVIDER = Symbol('MESSAGE_PROVIDER');
 

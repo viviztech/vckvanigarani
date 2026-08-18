@@ -69,6 +69,7 @@ describe('Webhook -> Contribution reconciliation (integration)', () => {
       data: {
         fullName: 'Webhook Test Bearer',
         phone: '+919800000001',
+        email: 'webhook-reconciliation-bearer@test.local',
         address: 'test',
         fatherOrHusbandName: 'test',
         habitationOrStreet: 'test',

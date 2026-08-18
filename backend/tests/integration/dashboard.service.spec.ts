@@ -32,6 +32,7 @@ describe('DashboardService (integration)', () => {
       data: {
         fullName: `Dashboard Test ${suffix}`,
         phone: `+9181000000${suffix}`,
+        email: `dashboard-test-${suffix}@test.local`,
         address: 'test',
         fatherOrHusbandName: 'test',
         habitationOrStreet: 'test',

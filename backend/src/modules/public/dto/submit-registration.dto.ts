@@ -1,6 +1,6 @@
 import { IsEmail, IsOptional, IsPhoneNumber, IsString, Length, MinLength } from 'class-validator';
 
-/** Same field set as CreateBearerDto (the resulting Bearer, on approval, is created from these) plus the OTP code proving phone ownership. */
+/** Same field set as CreateBearerDto (the resulting Bearer, on approval, is created from these) plus the OTP code proving email ownership. */
 export class SubmitRegistrationDto {
   @IsString()
   @MinLength(2)
@@ -13,14 +13,14 @@ export class SubmitRegistrationDto {
   @IsPhoneNumber()
   phone!: string;
 
-  /** OTP sent via POST /auth/otp/request — verified here, one-time use. */
+  /** OTP identity — sent via POST /auth/otp/request, verified here. */
+  @IsEmail()
+  email!: string;
+
+  /** OTP code, one-time use. */
   @IsString()
   @Length(6, 6)
   code!: string;
-
-  @IsOptional()
-  @IsEmail()
-  email?: string;
 
   @IsString()
   @MinLength(2)

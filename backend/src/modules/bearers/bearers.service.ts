@@ -28,11 +28,12 @@ export class BearersService {
   ) {}
 
   /**
-   * Phone is a bearer's only enforced-unique, form-entered identity (it's
-   * also the OTP login key) — so re-submitting the same phone number is
-   * treated as "this is the same person, their details changed" rather than
-   * a conflict to reject. membershipNo is never touched on this path, only
-   * assigned once, on first creation.
+   * Phone is the dedup key bearer creation upserts on — re-submitting the
+   * same phone number is treated as "this is the same person, their details
+   * changed" rather than a conflict to reject. Email is also
+   * enforced-unique (it's the OTP login key), but isn't used for this
+   * upsert match. membershipNo is never touched on this path, only assigned
+   * once, on first creation.
    */
   async create(dto: CreateBearerDto) {
     await this.assertValidHomeUnits(dto.homeAdministrativeUnitId, dto.homeElectoralUnitId);

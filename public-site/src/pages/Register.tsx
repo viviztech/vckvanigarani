@@ -74,7 +74,7 @@ export default function Register() {
     setOtpError(null);
     setOtpSending(true);
     try {
-      await publicApi.requestOtp(phone);
+      await publicApi.requestOtp(email);
       setOtpSent(true);
     } catch (err) {
       setOtpError(err instanceof ApiError ? err.message : 'குறியீட்டை அனுப்ப முடியவில்லை.');
@@ -89,7 +89,16 @@ export default function Register() {
   const [submitted, setSubmitted] = useState(false);
 
   const canSubmit =
-    fullName && fatherOrHusbandName && phone && address && habitationOrStreet && idProofRef && homeDistrictId && otpSent && code.length === 6;
+    fullName &&
+    fatherOrHusbandName &&
+    phone &&
+    email &&
+    address &&
+    habitationOrStreet &&
+    idProofRef &&
+    homeDistrictId &&
+    otpSent &&
+    code.length === 6;
 
   const submit = async () => {
     setSubmitError(null);
@@ -99,8 +108,8 @@ export default function Register() {
         fullName,
         fatherOrHusbandName,
         phone,
+        email,
         code,
-        email: email || undefined,
         address,
         habitationOrStreet,
         idProofRef,
@@ -159,22 +168,34 @@ export default function Register() {
 
         <div className="mb-4">
           <label className="field-label" htmlFor="r-phone">கைபேசி எண் (Mobile Number)</label>
+          <input
+            id="r-phone"
+            className="field-input"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="+91XXXXXXXXXX"
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="field-label" htmlFor="r-email">மின்னஞ்சல் (Email)</label>
           <div className="grid grid-cols-[1fr_auto] gap-2.5">
             <input
-              id="r-phone"
+              id="r-email"
               className="field-input"
-              value={phone}
+              type="email"
+              value={email}
               onChange={(e) => {
-                setPhone(e.target.value);
+                setEmail(e.target.value);
                 setOtpSent(false);
                 setCode('');
               }}
-              placeholder="+91XXXXXXXXXX"
+              placeholder="you@example.com"
             />
             <button
               type="button"
               className="btn border border-blue-700 text-blue-700 bg-white hover:bg-blue-50 disabled:opacity-50"
-              disabled={!phone || otpSending}
+              disabled={!email || otpSending}
               onClick={sendOtp}
             >
               {otpSent ? 'மீண்டும் அனுப்பு' : 'குறியீடு அனுப்பு'}
@@ -189,11 +210,6 @@ export default function Register() {
             <input id="r-code" className="field-input" value={code} onChange={(e) => setCode(e.target.value)} maxLength={6} inputMode="numeric" />
           </div>
         )}
-
-        <div className="mb-4">
-          <label className="field-label" htmlFor="r-email">மின்னஞ்சல் (Email)</label>
-          <input id="r-email" className="field-input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </div>
 
         <div className="mb-4">
           <label className="field-label">மாநிலம் (State)</label>

@@ -258,7 +258,7 @@ export default function BearerForm() {
           <input id="b-phone" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+91XXXXXXXXXX" />
         </div>
         <div className="field">
-          <label htmlFor="b-email">மின்னஞ்சல் (Email)</label>
+          <label htmlFor="b-email">மின்னஞ்சல் (Email) — login OTP is sent here</label>
           <input id="b-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
 
@@ -356,7 +356,7 @@ export default function BearerForm() {
           Membership number is generated automatically (VCK-VGA-&lt;district&gt;-00001) once the bearer is created —
           that's why District (above) is required even though the rest of the address chain is optional. If this
           phone number already belongs to a bearer, their existing record is updated instead of creating a
-          duplicate.
+          duplicate. Email must be unique — it's how this bearer logs in.
         </p>
         {createError && <p className="error-text">{createError}</p>}
         {createResultMessage && <p style={{ color: 'var(--text-muted)', fontSize: 13 }}>{createResultMessage}</p>}
@@ -366,6 +366,7 @@ export default function BearerForm() {
             !fullName ||
             !fatherOrHusbandName ||
             !phone ||
+            !email ||
             !address ||
             !habitationOrStreet ||
             !idProofRef ||
@@ -377,7 +378,7 @@ export default function BearerForm() {
               fullName,
               fatherOrHusbandName,
               phone,
-              email: email || undefined,
+              email,
               address,
               habitationOrStreet,
               idProofRef,

@@ -10,21 +10,21 @@ class AuthService {
   AuthService(this._api);
   final ApiClient _api;
 
-  Future<void> requestOtp(String phone) {
+  Future<void> requestOtp(String email) {
     return _api.dio.post(
       '/auth/otp/request',
-      data: {'phone': phone},
+      data: {'email': email},
       options: Options(extra: {'skipAuth': true}),
     );
   }
 
   /// FR-016: rejects with [BearerNotFoundException] if no admin has created
-  /// this phone number as a bearer yet — there is no sign-up to fall back to.
-  Future<void> verifyOtp(String phone, String code) async {
+  /// this email address as a bearer yet — there is no sign-up to fall back to.
+  Future<void> verifyOtp(String email, String code) async {
     try {
       final res = await _api.dio.post(
         '/auth/otp/verify',
-        data: {'phone': phone, 'code': code},
+        data: {'email': email, 'code': code},
         options: Options(extra: {'skipAuth': true}),
       );
       await TokenStore.instance.set(

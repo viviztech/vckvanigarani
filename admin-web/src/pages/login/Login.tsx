@@ -9,8 +9,8 @@ interface LoginProps {
 
 export default function Login({ onLoggedIn }: LoginProps) {
   const navigate = useNavigate();
-  const [step, setStep] = useState<'phone' | 'code'>('phone');
-  const [phone, setPhone] = useState('');
+  const [step, setStep] = useState<'email' | 'code'>('email');
+  const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -19,7 +19,7 @@ export default function Login({ onLoggedIn }: LoginProps) {
     setError(null);
     setBusy(true);
     try {
-      await auth.requestOtp(phone);
+      await auth.requestOtp(email);
       setStep('code');
     } catch {
       // The API always returns 202 for /otp/request, so this is a network-level failure.
@@ -33,12 +33,12 @@ export default function Login({ onLoggedIn }: LoginProps) {
     setError(null);
     setBusy(true);
     try {
-      await auth.verifyOtp(phone, code);
+      await auth.verifyOtp(email, code);
       onLoggedIn();
       navigate('/', { replace: true });
     } catch (err) {
       if (err instanceof ApiError && err.status === 404) {
-        setError('No account found for this number. Contact your admin to be added.');
+        setError('No account found for this email. Contact your admin to be added.');
       } else if (err instanceof ApiError && err.status === 401) {
         setError('Incorrect or expired code.');
       } else {
@@ -53,26 +53,26 @@ export default function Login({ onLoggedIn }: LoginProps) {
     <div className="login-shell">
       <div className="card" style={{ width: 360 }}>
         <h2>Vanigar Ani Admin</h2>
-        {step === 'phone' ? (
+        {step === 'email' ? (
           <>
             <div className="field">
-              <label htmlFor="phone">Phone number</label>
+              <label htmlFor="email">Email address</label>
               <input
-                id="phone"
-                type="tel"
-                placeholder="+91XXXXXXXXXX"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             {error && <p className="error-text">{error}</p>}
-            <button className="primary" disabled={busy || !phone} onClick={requestOtp}>
+            <button className="primary" disabled={busy || !email} onClick={requestOtp}>
               Send code
             </button>
           </>
         ) : (
           <>
-            <p style={{ fontSize: 13, color: 'var(--text-muted)' }}>Code sent to {phone}</p>
+            <p style={{ fontSize: 13, color: 'var(--text-muted)' }}>Code sent to {email}</p>
             <div className="field">
               <label htmlFor="code">6-digit code</label>
               <input
@@ -87,7 +87,7 @@ export default function Login({ onLoggedIn }: LoginProps) {
             <button className="primary" disabled={busy || code.length !== 6} onClick={verifyOtp}>
               Log in
             </button>{' '}
-            <button className="secondary" onClick={() => setStep('phone')}>
+            <button className="secondary" onClick={() => setStep('email')}>
               Back
             </button>
           </>

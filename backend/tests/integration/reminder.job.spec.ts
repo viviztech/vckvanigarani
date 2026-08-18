@@ -27,6 +27,7 @@ describe('ReminderJob (integration)', () => {
       data: {
         fullName: `Reminder Test ${suffix}`,
         phone: `+9182000000${suffix}`,
+        email: `reminder-test-${suffix}@test.local`,
         address: 'test',
         fatherOrHusbandName: 'test',
         habitationOrStreet: 'test',

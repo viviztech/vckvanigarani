@@ -5,7 +5,8 @@ export interface CreateBearerInput {
   fullName: string;
   fatherOrHusbandName: string;
   phone: string;
-  email?: string;
+  /** Required, unique — this is the OTP login identity. */
+  email: string;
   address: string;
   habitationOrStreet: string;
   /** Voter ID number. */

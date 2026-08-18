@@ -14,6 +14,7 @@ describe('AuditLogService (integration)', () => {
       data: {
         fullName: 'Audit Test Actor',
         phone: '+919000000099',
+        email: 'audit-test-actor@test.local',
         address: 'test',
         fatherOrHusbandName: 'test',
         habitationOrStreet: 'test',

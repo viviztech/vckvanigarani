@@ -19,7 +19,7 @@ export class PublicRegistrationsService {
    * reject every public submission by design.
    */
   async submit(dto: SubmitRegistrationDto) {
-    if (!this.otp.verify(dto.phone, dto.code)) {
+    if (!this.otp.verify(dto.email, dto.code)) {
       throw new UnauthorizedException({ error: 'INVALID_OTP', message: 'Incorrect or expired code' });
     }
 

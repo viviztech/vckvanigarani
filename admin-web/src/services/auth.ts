@@ -7,10 +7,10 @@ interface TokenPair {
 }
 
 export const auth = {
-  requestOtp: (phone: string) => api.post<void>('/auth/otp/request', { phone }, { skipAuth: true }),
+  requestOtp: (email: string) => api.post<void>('/auth/otp/request', { email }, { skipAuth: true }),
 
-  async verifyOtp(phone: string, code: string): Promise<void> {
-    const tokens = await api.post<TokenPair>('/auth/otp/verify', { phone, code }, { skipAuth: true });
+  async verifyOtp(email: string, code: string): Promise<void> {
+    const tokens = await api.post<TokenPair>('/auth/otp/verify', { email, code }, { skipAuth: true });
     tokenStore.set(tokens);
   },
 

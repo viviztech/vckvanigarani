@@ -5,7 +5,7 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { OtpService } from './otp.service';
 import { JwtStrategy } from './jwt.strategy';
-import { MockSmsProvider, SMS_PROVIDER } from './sms-provider';
+import { EMAIL_PROVIDER, MockEmailProvider, SmtpEmailProvider } from './email-provider';
 
 @Module({
   imports: [PassportModule, JwtModule.register({})],
@@ -15,11 +15,10 @@ import { MockSmsProvider, SMS_PROVIDER } from './sms-provider';
     OtpService,
     JwtStrategy,
     {
-      // SMS_PROVIDER=mock is the only implementation for now; a real
-      // MSG91/Twilio provider slots in here later without touching
-      // AuthService (specs/001.../research.md §5).
-      provide: SMS_PROVIDER,
-      useClass: MockSmsProvider,
+      // EMAIL_PROVIDER=mock (default, dev/test) logs the code instead of
+      // sending it; EMAIL_PROVIDER=smtp sends via the SMTP_* settings.
+      provide: EMAIL_PROVIDER,
+      useClass: process.env.EMAIL_PROVIDER === 'smtp' ? SmtpEmailProvider : MockEmailProvider,
     },
   ],
   exports: [AuthService, OtpService],

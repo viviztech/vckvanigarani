@@ -63,8 +63,9 @@ export interface RegistrationInput {
   fullName: string;
   fatherOrHusbandName: string;
   phone: string;
+  /** OTP identity — sent via publicApi.requestOtp, verified server-side against `code`. */
+  email: string;
   code: string;
-  email?: string;
   address: string;
   habitationOrStreet: string;
   idProofRef: string;
@@ -113,7 +114,7 @@ export interface EventItem {
 }
 
 export const publicApi = {
-  requestOtp: (phone: string) => request<void>('/auth/otp/request', 'POST', { phone }),
+  requestOtp: (email: string) => request<void>('/auth/otp/request', 'POST', { email }),
   jurisdictions: (tree: 'ADMINISTRATIVE' | 'ELECTORAL') =>
     request<JurisdictionUnit[]>(`/public/jurisdictions?tree=${tree}`, 'GET'),
   register: (input: RegistrationInput) => request<{ id: string; status: string }>('/public/registrations', 'POST', input),

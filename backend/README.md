@@ -39,7 +39,7 @@ No bearer can self-register (Constitution Principle V). On a fresh database,
 create the first Super Admin with:
 
 ```bash
-npm run bootstrap:super-admin -- "Full Name" "+91XXXXXXXXXX"
+npm run bootstrap:super-admin -- "Full Name" "+91XXXXXXXXXX" "admin@example.com"
 ```
 
 Every other bearer is created from inside the app by an admin from then on.
@@ -74,7 +74,7 @@ human with an email/phone to complete Razorpay's own signup.
 
 The mock push/SMS providers in `src/common/notifications/` (bound
 unconditionally in `notifications.module.ts` — there's no env toggle for
-these yet, unlike `SMS_PROVIDER`/`PAYMENT_PROVIDER` above) are enough to
+these yet, unlike `EMAIL_PROVIDER`/`PAYMENT_PROVIDER` above) are enough to
 develop and test the whole publish → fan-out → feed loop locally; they just
 log what they would have sent. Publishing a post (`POST /news/:id/publish`)
 fires `FanoutJob.run()` without awaiting it (FR-010), so the API responds
@@ -82,7 +82,7 @@ immediately even for a statewide "everyone" audience — watch the server log
 for `[NotificationService]` lines to confirm delivery attempts. Swapping in a
 real FCM/SMS vendor means implementing `PushProvider`/`MessageProvider` and
 changing the `useClass` in `notifications.module.ts`, the same shape of
-change as `SMS_PROVIDER`/`PAYMENT_PROVIDER`, just not env-driven yet.
+change as `EMAIL_PROVIDER`/`PAYMENT_PROVIDER`, just not env-driven yet.
 
 ## Commands
 
@@ -94,7 +94,7 @@ npm run format             # prettier --write
 npm run prisma:generate   # regenerate the Prisma client after a schema change
 npm run prisma:migrate    # create + apply a new migration
 npm run prisma:seed       # load sample jurisdiction data (see prisma/seed-data/)
-npm run bootstrap:super-admin -- "Name" "+91..."   # create the first Super Admin
+npm run bootstrap:super-admin -- "Name" "+91..." "email@example.com"  # create the first Super Admin
 npm test                  # jest
 ```
 

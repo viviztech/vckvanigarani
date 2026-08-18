@@ -12,9 +12,9 @@ export class CreateBearerDto {
   @IsPhoneNumber()
   phone!: string;
 
-  @IsOptional()
+  /** OTP login identity — required, unique. */
   @IsEmail()
-  email?: string;
+  email!: string;
 
   @IsString()
   @MinLength(2)

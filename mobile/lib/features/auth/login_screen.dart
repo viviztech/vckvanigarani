@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../services/auth_service.dart';
 import 'auth_state.dart';
 
-enum _Step { phone, code }
+enum _Step { email, code }
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -13,15 +13,15 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
-  final _phoneController = TextEditingController();
+  final _emailController = TextEditingController();
   final _codeController = TextEditingController();
-  _Step _step = _Step.phone;
+  _Step _step = _Step.email;
   String? _error;
   bool _busy = false;
 
   @override
   void dispose() {
-    _phoneController.dispose();
+    _emailController.dispose();
     _codeController.dispose();
     super.dispose();
   }
@@ -32,7 +32,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       _error = null;
     });
     try {
-      await ref.read(authServiceProvider).requestOtp(_phoneController.text.trim());
+      await ref.read(authServiceProvider).requestOtp(_emailController.text.trim());
       setState(() => _step = _Step.code);
     } catch (_) {
       setState(() => _error = 'Could not reach the server. Check your connection and try again.');
@@ -47,10 +47,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       _error = null;
     });
     try {
-      await ref.read(authServiceProvider).verifyOtp(_phoneController.text.trim(), _codeController.text.trim());
+      await ref.read(authServiceProvider).verifyOtp(_emailController.text.trim(), _codeController.text.trim());
       ref.read(authStateProvider.notifier).markLoggedIn();
     } on BearerNotFoundException {
-      setState(() => _error = 'No account found for this number. Contact your admin to be added.');
+      setState(() => _error = 'No account found for this email. Contact your admin to be added.');
     } on InvalidOtpException {
       setState(() => _error = 'Incorrect or expired code.');
     } catch (_) {
@@ -74,7 +74,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               children: [
                 Text('Vanigar Ani', style: Theme.of(context).textTheme.headlineSmall),
                 const SizedBox(height: 24),
-                if (_step == _Step.phone) ..._phoneStep() else ..._codeStep(),
+                if (_step == _Step.email) ..._emailStep() else ..._codeStep(),
                 if (_error != null) ...[
                   const SizedBox(height: 12),
                   Text(_error!, style: const TextStyle(color: Colors.red)),
@@ -87,17 +87,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     );
   }
 
-  List<Widget> _phoneStep() {
+  List<Widget> _emailStep() {
     return [
       TextField(
-        controller: _phoneController,
-        keyboardType: TextInputType.phone,
-        decoration: const InputDecoration(labelText: 'Phone number', hintText: '+91XXXXXXXXXX'),
+        controller: _emailController,
+        keyboardType: TextInputType.emailAddress,
+        decoration: const InputDecoration(labelText: 'Email address', hintText: 'you@example.com'),
         onChanged: (_) => setState(() {}),
       ),
       const SizedBox(height: 16),
       FilledButton(
-        onPressed: _busy || _phoneController.text.trim().isEmpty ? null : _requestOtp,
+        onPressed: _busy || _emailController.text.trim().isEmpty ? null : _requestOtp,
         child: const Text('Send code'),
       ),
     ];
@@ -105,7 +105,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   List<Widget> _codeStep() {
     return [
-      Text('Code sent to ${_phoneController.text.trim()}'),
+      Text('Code sent to ${_emailController.text.trim()}'),
       const SizedBox(height: 12),
       TextField(
         controller: _codeController,
@@ -120,7 +120,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         child: const Text('Log in'),
       ),
       TextButton(
-        onPressed: _busy ? null : () => setState(() => _step = _Step.phone),
+        onPressed: _busy ? null : () => setState(() => _step = _Step.email),
         child: const Text('Back'),
       ),
     ];

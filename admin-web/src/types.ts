@@ -51,7 +51,7 @@ export interface Bearer {
   fullName: string;
   fatherOrHusbandName: string;
   phone: string;
-  email: string | null;
+  email: string;
   photoUrl: string | null;
   address: string;
   habitationOrStreet: string;
@@ -75,7 +75,7 @@ export interface PendingRegistration {
   fullName: string;
   fatherOrHusbandName: string;
   phone: string;
-  email: string | null;
+  email: string;
   address: string;
   habitationOrStreet: string;
   idProofRef: string;

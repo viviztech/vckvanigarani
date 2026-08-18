@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 
-/** Vendor-agnostic push delivery (FCM in production) — see sms-provider.ts for the same pattern. */
+/** Vendor-agnostic push delivery (FCM in production) — see email-provider.ts for the same pattern. */
 export const PUSH_PROVIDER = Symbol('PUSH_PROVIDER');
 
 export interface PushPayload {

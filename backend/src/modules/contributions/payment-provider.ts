@@ -3,7 +3,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import Razorpay from 'razorpay';
 
 /**
- * Vendor-agnostic payment gateway access — same pattern as SmsProvider/
+ * Vendor-agnostic payment gateway access — same pattern as EmailProvider/
  * PushProvider. Order creation is the only part that needs a live account;
  * webhook signature verification (webhook-signature.guard.ts) is real,
  * vendor-generic HMAC code and doesn't go through this interface at all.

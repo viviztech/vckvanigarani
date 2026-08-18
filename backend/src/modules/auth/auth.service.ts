@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../../prisma/prisma.service';
 import { BearerStatus } from '../../../generated/prisma/enums';
 import { OtpService } from './otp.service';
-import { SMS_PROVIDER, SmsProvider } from './sms-provider';
+import { EMAIL_PROVIDER, EmailProvider } from './email-provider';
 
 export interface TokenPair {
   accessToken: string;
@@ -16,33 +16,33 @@ export class AuthService {
     private readonly prisma: PrismaService,
     private readonly otp: OtpService,
     private readonly jwt: JwtService,
-    @Inject(SMS_PROVIDER) private readonly smsProvider: SmsProvider,
+    @Inject(EMAIL_PROVIDER) private readonly emailProvider: EmailProvider,
   ) {}
 
   /**
-   * Always accepted, regardless of whether `phone` matches a Bearer — the
-   * response must not leak which numbers are registered (contracts/api.md).
+   * Always accepted, regardless of whether `email` matches a Bearer — the
+   * response must not leak which addresses are registered (contracts/api.md).
    */
-  async requestOtp(phone: string): Promise<void> {
-    const code = this.otp.generate(phone);
-    await this.smsProvider.sendOtp(phone, code);
+  async requestOtp(email: string): Promise<void> {
+    const code = this.otp.generate(email);
+    await this.emailProvider.sendOtp(email, code);
   }
 
   /**
    * FR-016 / Constitution Principle V: OTP login authenticates an existing
-   * Bearer, it never creates one. A phone with no matching ACTIVE Bearer is
+   * Bearer, it never creates one. An email with no matching ACTIVE Bearer is
    * rejected, not silently turned into a new account.
    */
-  async verifyOtp(phone: string, code: string): Promise<TokenPair> {
-    if (!this.otp.verify(phone, code)) {
+  async verifyOtp(email: string, code: string): Promise<TokenPair> {
+    if (!this.otp.verify(email, code)) {
       throw new UnauthorizedException({ error: 'INVALID_OTP', message: 'Incorrect or expired code' });
     }
 
-    const bearer = await this.prisma.bearer.findUnique({ where: { phone } });
+    const bearer = await this.prisma.bearer.findUnique({ where: { email } });
     if (!bearer || bearer.status !== BearerStatus.ACTIVE) {
       throw new NotFoundException({
         error: 'BEARER_NOT_FOUND',
-        message: 'No account found for this number. Contact your admin to be added.',
+        message: 'No account found for this email. Contact your admin to be added.',
       });
     }
 

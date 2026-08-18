@@ -47,6 +47,7 @@ describe('Webhook hardening — rate limit and replay (integration)', () => {
       data: {
         fullName: 'Webhook Hardening Bearer',
         phone: '+919800000099',
+        email: 'webhook-hardening-bearer@test.local',
         address: 'test',
         fatherOrHusbandName: 'test',
         habitationOrStreet: 'test',

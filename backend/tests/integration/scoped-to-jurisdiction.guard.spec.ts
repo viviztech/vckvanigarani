@@ -55,6 +55,7 @@ describe('ScopedToJurisdictionGuard (integration)', () => {
         data: {
           fullName: `Guard Test ${suffix}`,
           phone: `+91900000${suffix}`,
+          email: `guard-test-${suffix}@test.local`,
           address: 'test',
           fatherOrHusbandName: 'test',
           habitationOrStreet: 'test',

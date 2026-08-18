@@ -10,7 +10,7 @@ export class AuthController {
   constructor(private readonly auth: AuthService) {}
 
   /**
-   * T036: this is the one unauthenticated route that sends an SMS per
+   * T036: this is the one unauthenticated route that sends an email per
    * request, so it's the obvious abuse target (cost + spam) — rate limited
    * per-IP rather than globally, since the rest of the API is already
    * behind JWT auth.
@@ -20,13 +20,13 @@ export class AuthController {
   @UseGuards(ThrottlerGuard)
   @Throttle({ default: { limit: 3, ttl: 60_000 } })
   async requestOtp(@Body() dto: RequestOtpDto): Promise<void> {
-    await this.auth.requestOtp(dto.phone);
+    await this.auth.requestOtp(dto.email);
   }
 
   @Post('otp/verify')
   @HttpCode(HttpStatus.OK)
   async verifyOtp(@Body() dto: VerifyOtpDto) {
-    return this.auth.verifyOtp(dto.phone, dto.code);
+    return this.auth.verifyOtp(dto.email, dto.code);
   }
 
   @Post('refresh')
