@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
-import { publicApi, type DirectoryEntry, type JurisdictionUnit } from '../api';
+import { publicApi, type DirectoryEntry, type JurisdictionUnit, type Post } from '../api';
 import Reveal from '../components/Reveal';
 
 export default function Bearers() {
   const [entries, setEntries] = useState<DirectoryEntry[] | null>(null);
+  const [posts, setPosts] = useState<Post[] | null>(null);
   const [districts, setDistricts] = useState<JurisdictionUnit[] | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
 
@@ -11,20 +12,14 @@ export default function Bearers() {
   const [districtFilter, setDistrictFilter] = useState('');
 
   useEffect(() => {
-    Promise.all([publicApi.bearersDirectory(), publicApi.jurisdictions('ADMINISTRATIVE')])
-      .then(([directory, administrativeUnits]) => {
+    Promise.all([publicApi.bearersDirectory(), publicApi.posts(), publicApi.jurisdictions('ADMINISTRATIVE')])
+      .then(([directory, allPosts, administrativeUnits]) => {
         setEntries(directory);
+        setPosts([...allPosts].sort((a, b) => a.rank - b.rank));
         setDistricts(administrativeUnits.filter((u) => u.type === 'DISTRICT' && u.status === 'ACTIVE'));
       })
       .catch(() => setLoadError('நிர்வாகிகள் பட்டியலை ஏற்ற முடியவில்லை. பக்கத்தை மீண்டும் ஏற்றவும்.'));
   }, []);
-
-  const posts = useMemo(() => {
-    if (!entries) return [];
-    const byId = new Map<string, DirectoryEntry['post']>();
-    entries.forEach((e) => byId.set(e.post.id, e.post));
-    return [...byId.values()].sort((a, b) => a.rank - b.rank);
-  }, [entries]);
 
   const filtered = useMemo(() => {
     if (!entries) return [];
@@ -41,14 +36,20 @@ export default function Bearers() {
   }, [entries, postFilter, districtFilter]);
 
   const grouped = useMemo(() => {
+    if (!posts) return [];
     const byPost = new Map<string, DirectoryEntry[]>();
     filtered.forEach((e) => {
       const list = byPost.get(e.post.id) ?? [];
       list.push(e);
       byPost.set(e.post.id, list);
     });
-    return posts.filter((p) => byPost.has(p.id)).map((p) => ({ post: p, entries: byPost.get(p.id)! }));
-  }, [filtered, posts]);
+    // Show every post that matches the current filter, even ones with no
+    // one currently assigned — the org structure is real even when a post
+    // is vacant, and a totally blank page reads as broken rather than empty.
+    return posts
+      .filter((p) => !postFilter || p.id === postFilter)
+      .map((p) => ({ post: p, entries: byPost.get(p.id) ?? [] }));
+  }, [filtered, posts, postFilter]);
 
   return (
     <section className="max-w-5xl mx-auto px-4 py-16">
@@ -65,7 +66,7 @@ export default function Bearers() {
           <label className="field-label" htmlFor="filter-post">பொறுப்பு</label>
           <select id="filter-post" className="field-input" value={postFilter} onChange={(e) => setPostFilter(e.target.value)}>
             <option value="">அனைத்தும்</option>
-            {posts.map((p) => (
+            {posts?.map((p) => (
               <option key={p.id} value={p.id}>
                 {p.name}
               </option>
@@ -85,9 +86,9 @@ export default function Bearers() {
         </div>
       </Reveal>
 
-      {entries === null && !loadError && <p className="text-center text-gray-400 text-sm">ஏற்றுகிறது…</p>}
+      {(entries === null || posts === null) && !loadError && <p className="text-center text-gray-400 text-sm">ஏற்றுகிறது…</p>}
 
-      {entries !== null && grouped.length === 0 && (
+      {entries !== null && posts !== null && grouped.length === 0 && (
         <div className="bg-white border border-dashed border-gray-200 rounded-2xl p-12 text-center text-gray-400 text-sm">
           பொருந்தக்கூடிய நிர்வாகிகள் இல்லை.
         </div>
@@ -99,15 +100,19 @@ export default function Bearers() {
             <div>
               <h2 className="text-lg font-bold text-blue-950 mb-3">{post.name}</h2>
               <div className="bg-white border border-gray-100 rounded-2xl shadow-sm divide-y divide-gray-100 overflow-hidden transition-shadow duration-300 hover:shadow-md">
-                {postEntries.map((entry) => (
-                  <div
-                    key={entry.assignmentId}
-                    className="px-5 py-3.5 flex flex-wrap items-center justify-between gap-2 transition-colors duration-200 hover:bg-blue-50/60"
-                  >
-                    <span className="font-semibold text-gray-800">{entry.fullName}</span>
-                    <span className="text-sm text-gray-500">{entry.jurisdictions.map((j) => j.name).join(', ') || '—'}</span>
-                  </div>
-                ))}
+                {postEntries.length === 0 ? (
+                  <div className="px-5 py-3.5 text-sm text-gray-400">இதுவரை நியமிக்கப்படவில்லை</div>
+                ) : (
+                  postEntries.map((entry) => (
+                    <div
+                      key={entry.assignmentId}
+                      className="px-5 py-3.5 flex flex-wrap items-center justify-between gap-2 transition-colors duration-200 hover:bg-blue-50/60"
+                    >
+                      <span className="font-semibold text-gray-800">{entry.fullName}</span>
+                      <span className="text-sm text-gray-500">{entry.jurisdictions.map((j) => j.name).join(', ') || '—'}</span>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           </Reveal>

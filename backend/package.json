@@ -15,7 +15,8 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "prisma db seed",
-    "bootstrap:super-admin": "ts-node prisma/bootstrap-super-admin.ts"
+    "bootstrap:super-admin": "ts-node prisma/bootstrap-super-admin.ts",
+    "backfill:ac-district": "ts-node prisma/backfill-ac-district.ts"
   },
   "keywords": [],
   "author": "",

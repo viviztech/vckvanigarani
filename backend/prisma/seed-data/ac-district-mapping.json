@@ -1,0 +1,1172 @@
+[
+ {
+  "acName": "Gummidipoondi",
+  "pcName": "Tiruvallur",
+  "districtName": "Thiruvallur"
+ },
+ {
+  "acName": "Ponneri",
+  "pcName": "Tiruvallur",
+  "districtName": "Thiruvallur"
+ },
+ {
+  "acName": "Tiruttani",
+  "pcName": "Arakkonam",
+  "districtName": "Thiruvallur"
+ },
+ {
+  "acName": "Thiruvallur",
+  "pcName": "Tiruvallur",
+  "districtName": "Thiruvallur"
+ },
+ {
+  "acName": "Poonamallee",
+  "pcName": "Tiruvallur",
+  "districtName": "Thiruvallur"
+ },
+ {
+  "acName": "Avadi",
+  "pcName": "Tiruvallur",
+  "districtName": "Thiruvallur"
+ },
+ {
+  "acName": "Maduravoyal",
+  "pcName": "Sriperumbudur",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Ambattur",
+  "pcName": "Sriperumbudur",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Madavaram",
+  "pcName": "Tiruvallur",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Thiruvottiyur",
+  "pcName": "Chennai North",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Dr. Radhakrishnan Nagar",
+  "pcName": "Chennai North",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Perambur",
+  "pcName": "Chennai North",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Kolathur",
+  "pcName": "Chennai North",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Villivakkam",
+  "pcName": "Chennai Central",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Thiru-Vi-Ka-Nagar",
+  "pcName": "Chennai North",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Egmore",
+  "pcName": "Chennai Central",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Royapuram",
+  "pcName": "Chennai North",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Harbour",
+  "pcName": "Chennai Central",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Chepauk-Thiruvallikeni",
+  "pcName": "Chennai Central",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Thousand Lights",
+  "pcName": "Chennai Central",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Anna Nagar",
+  "pcName": "Chennai Central",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Virugampakkam",
+  "pcName": "Chennai South",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Saidapet",
+  "pcName": "Chennai South",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Thiyagarayanagar",
+  "pcName": "Chennai South",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Mylapore",
+  "pcName": "Chennai South",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Velachery",
+  "pcName": "Chennai South",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Sholinganallur",
+  "pcName": "Chennai South",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Alandur",
+  "pcName": "Sriperumbudur",
+  "districtName": "Chennai"
+ },
+ {
+  "acName": "Sriperumbudur",
+  "pcName": "Sriperumbudur",
+  "districtName": "Kancheepuram"
+ },
+ {
+  "acName": "Pallavaram",
+  "pcName": "Sriperumbudur",
+  "districtName": "Chengalpattu"
+ },
+ {
+  "acName": "Tambaram",
+  "pcName": "Sriperumbudur",
+  "districtName": "Chengalpattu"
+ },
+ {
+  "acName": "Chengalpattu",
+  "pcName": "Kanchipuram",
+  "districtName": "Chengalpattu"
+ },
+ {
+  "acName": "Thiruporur",
+  "pcName": "Kanchipuram",
+  "districtName": "Chengalpattu"
+ },
+ {
+  "acName": "Cheyyur",
+  "pcName": "Kanchipuram",
+  "districtName": "Chengalpattu"
+ },
+ {
+  "acName": "Madurantakam",
+  "pcName": "Kanchipuram",
+  "districtName": "Chengalpattu"
+ },
+ {
+  "acName": "Uthiramerur",
+  "pcName": "Kanchipuram",
+  "districtName": "Kancheepuram"
+ },
+ {
+  "acName": "Kancheepuram",
+  "pcName": "Kanchipuram",
+  "districtName": "Kancheepuram"
+ },
+ {
+  "acName": "Arakkonam",
+  "pcName": "Arakkonam",
+  "districtName": "Ranipet"
+ },
+ {
+  "acName": "Sholingur",
+  "pcName": "Arakkonam",
+  "districtName": "Ranipet"
+ },
+ {
+  "acName": "Katpadi",
+  "pcName": "Arakkonam",
+  "districtName": "Vellore"
+ },
+ {
+  "acName": "Ranipet",
+  "pcName": "Arakkonam",
+  "districtName": "Ranipet"
+ },
+ {
+  "acName": "Arcot",
+  "pcName": "Arakkonam",
+  "districtName": "Ranipet"
+ },
+ {
+  "acName": "Vellore",
+  "pcName": "Vellore",
+  "districtName": "Vellore"
+ },
+ {
+  "acName": "Anaikattu",
+  "pcName": "Vellore",
+  "districtName": "Vellore"
+ },
+ {
+  "acName": "Kilvaithinankuppam",
+  "pcName": "Vellore",
+  "districtName": "Vellore"
+ },
+ {
+  "acName": "Gudiyatham",
+  "pcName": "Vellore",
+  "districtName": "Vellore"
+ },
+ {
+  "acName": "Vaniyambadi",
+  "pcName": "Vellore",
+  "districtName": "Tirupathur"
+ },
+ {
+  "acName": "Ambur",
+  "pcName": "Vellore",
+  "districtName": "Tirupathur"
+ },
+ {
+  "acName": "Jolarpet",
+  "pcName": "Tiruvannamalai",
+  "districtName": "Tirupathur"
+ },
+ {
+  "acName": "Tiruppattur",
+  "pcName": "Tiruvannamalai",
+  "districtName": "Tirupathur"
+ },
+ {
+  "acName": "Uthangarai",
+  "pcName": "Krishnagiri",
+  "districtName": "Krishnagiri"
+ },
+ {
+  "acName": "Bargur",
+  "pcName": "Krishnagiri",
+  "districtName": "Krishnagiri"
+ },
+ {
+  "acName": "Krishnagiri",
+  "pcName": "Krishnagiri",
+  "districtName": "Krishnagiri"
+ },
+ {
+  "acName": "Veppanahalli",
+  "pcName": "Krishnagiri",
+  "districtName": "Krishnagiri"
+ },
+ {
+  "acName": "Hosur",
+  "pcName": "Krishnagiri",
+  "districtName": "Krishnagiri"
+ },
+ {
+  "acName": "Thalli",
+  "pcName": "Krishnagiri",
+  "districtName": "Krishnagiri"
+ },
+ {
+  "acName": "Palacode",
+  "pcName": "Dharmapuri",
+  "districtName": "Dharmapuri"
+ },
+ {
+  "acName": "Pennagaram",
+  "pcName": "Dharmapuri",
+  "districtName": "Dharmapuri"
+ },
+ {
+  "acName": "Dharmapuri",
+  "pcName": "Dharmapuri",
+  "districtName": "Dharmapuri"
+ },
+ {
+  "acName": "Pappireddippatti",
+  "pcName": "Dharmapuri",
+  "districtName": "Dharmapuri"
+ },
+ {
+  "acName": "Harur",
+  "pcName": "Dharmapuri",
+  "districtName": "Dharmapuri"
+ },
+ {
+  "acName": "Chengam",
+  "pcName": "Tiruvannamalai",
+  "districtName": "Thiruvannamalai"
+ },
+ {
+  "acName": "Tiruvannamalai",
+  "pcName": "Tiruvannamalai",
+  "districtName": "Thiruvannamalai"
+ },
+ {
+  "acName": "Kilpennathur",
+  "pcName": "Tiruvannamalai",
+  "districtName": "Thiruvannamalai"
+ },
+ {
+  "acName": "Kalasapakkam",
+  "pcName": "Tiruvannamalai",
+  "districtName": "Thiruvannamalai"
+ },
+ {
+  "acName": "Polur",
+  "pcName": "Arani",
+  "districtName": "Thiruvannamalai"
+ },
+ {
+  "acName": "Arani",
+  "pcName": "Arani",
+  "districtName": "Thiruvannamalai"
+ },
+ {
+  "acName": "Cheyyar",
+  "pcName": "Arani",
+  "districtName": "Thiruvannamalai"
+ },
+ {
+  "acName": "Vandavasi",
+  "pcName": "Arani",
+  "districtName": "Thiruvannamalai"
+ },
+ {
+  "acName": "Gingee",
+  "pcName": "Arani",
+  "districtName": "Villupuram"
+ },
+ {
+  "acName": "Mailam",
+  "pcName": "Arani",
+  "districtName": "Villupuram"
+ },
+ {
+  "acName": "Tindivanam",
+  "pcName": "Viluppuram",
+  "districtName": "Villupuram"
+ },
+ {
+  "acName": "Vanur",
+  "pcName": "Viluppuram",
+  "districtName": "Villupuram"
+ },
+ {
+  "acName": "Villupuram",
+  "pcName": "Viluppuram",
+  "districtName": "Villupuram"
+ },
+ {
+  "acName": "Vikravandi",
+  "pcName": "Viluppuram",
+  "districtName": "Villupuram"
+ },
+ {
+  "acName": "Tirukkoyilur",
+  "pcName": "Viluppuram",
+  "districtName": "Kallakurichi"
+ },
+ {
+  "acName": "Ulundurpettai",
+  "pcName": "Viluppuram",
+  "districtName": "Kallakurichi"
+ },
+ {
+  "acName": "Rishivandiyam",
+  "pcName": "Kallakurichi",
+  "districtName": "Kallakurichi"
+ },
+ {
+  "acName": "Sankarapuram",
+  "pcName": "Kallakurichi",
+  "districtName": "Kallakurichi"
+ },
+ {
+  "acName": "Kallakurichi",
+  "pcName": "Kallakurichi",
+  "districtName": "Kallakurichi"
+ },
+ {
+  "acName": "Gangavalli",
+  "pcName": "Kallakurichi",
+  "districtName": "Salem"
+ },
+ {
+  "acName": "Attur",
+  "pcName": "Kallakurichi",
+  "districtName": "Salem"
+ },
+ {
+  "acName": "Yercaud",
+  "pcName": "Kallakurichi",
+  "districtName": "Salem"
+ },
+ {
+  "acName": "Omalur",
+  "pcName": "Salem",
+  "districtName": "Salem"
+ },
+ {
+  "acName": "Mettur",
+  "pcName": "Dharmapuri",
+  "districtName": "Salem"
+ },
+ {
+  "acName": "Edappadi",
+  "pcName": "Salem",
+  "districtName": "Salem"
+ },
+ {
+  "acName": "Sankari",
+  "pcName": "Namakkal",
+  "districtName": "Salem"
+ },
+ {
+  "acName": "Salem (West)",
+  "pcName": "Salem",
+  "districtName": "Salem"
+ },
+ {
+  "acName": "Salem (North)",
+  "pcName": "Salem",
+  "districtName": "Salem"
+ },
+ {
+  "acName": "Salem (South)",
+  "pcName": "Salem",
+  "districtName": "Salem"
+ },
+ {
+  "acName": "Veerapandi",
+  "pcName": "Salem",
+  "districtName": "Salem"
+ },
+ {
+  "acName": "Rasipuram",
+  "pcName": "Namakkal",
+  "districtName": "Namakkal"
+ },
+ {
+  "acName": "Senthamangalam",
+  "pcName": "Namakkal",
+  "districtName": "Namakkal"
+ },
+ {
+  "acName": "Namakkal",
+  "pcName": "Namakkal",
+  "districtName": "Namakkal"
+ },
+ {
+  "acName": "Paramathi Velur",
+  "pcName": "Namakkal",
+  "districtName": "Namakkal"
+ },
+ {
+  "acName": "Tiruchengodu",
+  "pcName": "Namakkal",
+  "districtName": "Namakkal"
+ },
+ {
+  "acName": "Kumarapalayam",
+  "pcName": "Erode",
+  "districtName": "Namakkal"
+ },
+ {
+  "acName": "Erode (East)",
+  "pcName": "Erode",
+  "districtName": "Erode"
+ },
+ {
+  "acName": "Erode (West)",
+  "pcName": "Erode",
+  "districtName": "Erode"
+ },
+ {
+  "acName": "Modakkurichi",
+  "pcName": "Erode",
+  "districtName": "Erode"
+ },
+ {
+  "acName": "Dharapuram",
+  "pcName": "Erode",
+  "districtName": "Tiruppur"
+ },
+ {
+  "acName": "Kangayam",
+  "pcName": "Erode",
+  "districtName": "Tiruppur"
+ },
+ {
+  "acName": "Perundurai",
+  "pcName": "Tiruppur",
+  "districtName": "Erode"
+ },
+ {
+  "acName": "Bhavani",
+  "pcName": "Tiruppur",
+  "districtName": "Erode"
+ },
+ {
+  "acName": "Anthiyur",
+  "pcName": "Tiruppur",
+  "districtName": "Erode"
+ },
+ {
+  "acName": "Gobichettipalayam",
+  "pcName": "Tiruppur",
+  "districtName": "Erode"
+ },
+ {
+  "acName": "Bhavanisagar",
+  "pcName": "Nilgiris",
+  "districtName": "Erode"
+ },
+ {
+  "acName": "Udhagamandalam",
+  "pcName": "Nilgiris",
+  "districtName": "The Nilgiris"
+ },
+ {
+  "acName": "Gudalur",
+  "pcName": "Nilgiris",
+  "districtName": "The Nilgiris"
+ },
+ {
+  "acName": "Coonoor",
+  "pcName": "Nilgiris",
+  "districtName": "The Nilgiris"
+ },
+ {
+  "acName": "Mettupalayam",
+  "pcName": "Nilgiris",
+  "districtName": "Coimbatore"
+ },
+ {
+  "acName": "Avanashi",
+  "pcName": "Nilgiris",
+  "districtName": "Tiruppur"
+ },
+ {
+  "acName": "Tiruppur (North)",
+  "pcName": "Tiruppur",
+  "districtName": "Tiruppur"
+ },
+ {
+  "acName": "Tiruppur (South)",
+  "pcName": "Tiruppur",
+  "districtName": "Tiruppur"
+ },
+ {
+  "acName": "Palladam",
+  "pcName": "Coimbatore",
+  "districtName": "Tiruppur"
+ },
+ {
+  "acName": "Sulur",
+  "pcName": "Coimbatore",
+  "districtName": "Coimbatore"
+ },
+ {
+  "acName": "Kavundampalayam",
+  "pcName": "Coimbatore",
+  "districtName": "Coimbatore"
+ },
+ {
+  "acName": "Coimbatore (North)",
+  "pcName": "Coimbatore",
+  "districtName": "Coimbatore"
+ },
+ {
+  "acName": "Thondamuthur",
+  "pcName": "Pollachi",
+  "districtName": "Coimbatore"
+ },
+ {
+  "acName": "Coimbatore (South)",
+  "pcName": "Coimbatore",
+  "districtName": "Coimbatore"
+ },
+ {
+  "acName": "Singanallur",
+  "pcName": "Coimbatore",
+  "districtName": "Coimbatore"
+ },
+ {
+  "acName": "Kinathukadavu",
+  "pcName": "Pollachi",
+  "districtName": "Coimbatore"
+ },
+ {
+  "acName": "Pollachi",
+  "pcName": "Pollachi",
+  "districtName": "Coimbatore"
+ },
+ {
+  "acName": "Valparai",
+  "pcName": "Pollachi",
+  "districtName": "Coimbatore"
+ },
+ {
+  "acName": "Udumalaipettai",
+  "pcName": "Pollachi",
+  "districtName": "Tiruppur"
+ },
+ {
+  "acName": "Madathukulam",
+  "pcName": "Pollachi",
+  "districtName": "Tiruppur"
+ },
+ {
+  "acName": "Palani",
+  "pcName": "Dindigul",
+  "districtName": "Dindigul"
+ },
+ {
+  "acName": "Oddanchatram",
+  "pcName": "Dindigul",
+  "districtName": "Dindigul"
+ },
+ {
+  "acName": "Athoor",
+  "pcName": "Dindigul",
+  "districtName": "Dindigul"
+ },
+ {
+  "acName": "Nilakottai",
+  "pcName": "Dindigul",
+  "districtName": "Dindigul"
+ },
+ {
+  "acName": "Natham",
+  "pcName": "Dindigul",
+  "districtName": "Dindigul"
+ },
+ {
+  "acName": "Dindigul",
+  "pcName": "Dindigul",
+  "districtName": "Dindigul"
+ },
+ {
+  "acName": "Vedasandur",
+  "pcName": "Karur",
+  "districtName": "Dindigul"
+ },
+ {
+  "acName": "Aravakurichi",
+  "pcName": "Karur",
+  "districtName": "Karur"
+ },
+ {
+  "acName": "Karur",
+  "pcName": "Karur",
+  "districtName": "Karur"
+ },
+ {
+  "acName": "Krishnarayapuram",
+  "pcName": "Karur",
+  "districtName": "Karur"
+ },
+ {
+  "acName": "Kulithalai",
+  "pcName": "Perambalur",
+  "districtName": "Karur"
+ },
+ {
+  "acName": "Manapaarai",
+  "pcName": "Karur",
+  "districtName": "Tiruchirappalli"
+ },
+ {
+  "acName": "Srirangam",
+  "pcName": "Tiruchirappalli",
+  "districtName": "Tiruchirappalli"
+ },
+ {
+  "acName": "Tiruchirappalli (West)",
+  "pcName": "Tiruchirappalli",
+  "districtName": "Tiruchirappalli"
+ },
+ {
+  "acName": "Tiruchirappalli (East)",
+  "pcName": "Tiruchirappalli",
+  "districtName": "Tiruchirappalli"
+ },
+ {
+  "acName": "Thiruverumbur",
+  "pcName": "Tiruchirappalli",
+  "districtName": "Tiruchirappalli"
+ },
+ {
+  "acName": "Lalgudi",
+  "pcName": "Perambalur",
+  "districtName": "Tiruchirappalli"
+ },
+ {
+  "acName": "Manachanallur",
+  "pcName": "Perambalur",
+  "districtName": "Tiruchirappalli"
+ },
+ {
+  "acName": "Musiri",
+  "pcName": "Perambalur",
+  "districtName": "Tiruchirappalli"
+ },
+ {
+  "acName": "Thuraiyur",
+  "pcName": "Perambalur",
+  "districtName": "Tiruchirappalli"
+ },
+ {
+  "acName": "Perambalur",
+  "pcName": "Perambalur",
+  "districtName": "Perambalur"
+ },
+ {
+  "acName": "Kunnam",
+  "pcName": "Chidambaram",
+  "districtName": "Perambalur"
+ },
+ {
+  "acName": "Ariyalur",
+  "pcName": "Chidambaram",
+  "districtName": "Ariyalur"
+ },
+ {
+  "acName": "Jayankondam",
+  "pcName": "Chidambaram",
+  "districtName": "Ariyalur"
+ },
+ {
+  "acName": "Tittakudi",
+  "pcName": "Cuddalore",
+  "districtName": "Cuddalore"
+ },
+ {
+  "acName": "Virudhachalam",
+  "pcName": "Cuddalore",
+  "districtName": "Cuddalore"
+ },
+ {
+  "acName": "Neyveli",
+  "pcName": "Cuddalore",
+  "districtName": "Cuddalore"
+ },
+ {
+  "acName": "Panruti",
+  "pcName": "Cuddalore",
+  "districtName": "Cuddalore"
+ },
+ {
+  "acName": "Cuddalore",
+  "pcName": "Cuddalore",
+  "districtName": "Cuddalore"
+ },
+ {
+  "acName": "Kurinjipadi",
+  "pcName": "Cuddalore",
+  "districtName": "Cuddalore"
+ },
+ {
+  "acName": "Bhuvanagiri",
+  "pcName": "Chidambaram",
+  "districtName": "Cuddalore"
+ },
+ {
+  "acName": "Chidambaram",
+  "pcName": "Chidambaram",
+  "districtName": "Cuddalore"
+ },
+ {
+  "acName": "Kattumannarkoil",
+  "pcName": "Chidambaram",
+  "districtName": "Cuddalore"
+ },
+ {
+  "acName": "Sirkazhi",
+  "pcName": "Mayiladuthurai",
+  "districtName": "Mayiladuthurai"
+ },
+ {
+  "acName": "Mayiladuthurai",
+  "pcName": "Mayiladuthurai",
+  "districtName": "Mayiladuthurai"
+ },
+ {
+  "acName": "Poompuhar",
+  "pcName": "Mayiladuthurai",
+  "districtName": "Mayiladuthurai"
+ },
+ {
+  "acName": "Nagapattinam",
+  "pcName": "Nagapattinam",
+  "districtName": "Nagapattinam"
+ },
+ {
+  "acName": "Kilvelur",
+  "pcName": "Nagapattinam",
+  "districtName": "Nagapattinam"
+ },
+ {
+  "acName": "Vedaranyam",
+  "pcName": "Nagapattinam",
+  "districtName": "Nagapattinam"
+ },
+ {
+  "acName": "Thiruthuraipoondi",
+  "pcName": "Nagapattinam",
+  "districtName": "Thiruvarur"
+ },
+ {
+  "acName": "Mannargudi",
+  "pcName": "Thanjavur",
+  "districtName": "Thiruvarur"
+ },
+ {
+  "acName": "Thiruvarur",
+  "pcName": "Nagapattinam",
+  "districtName": "Thiruvarur"
+ },
+ {
+  "acName": "Nannilam",
+  "pcName": "Nagapattinam",
+  "districtName": "Thiruvarur"
+ },
+ {
+  "acName": "Thiruvidaimarudur",
+  "pcName": "Mayiladuthurai",
+  "districtName": "Thanjavur"
+ },
+ {
+  "acName": "Kumbakonam",
+  "pcName": "Mayiladuthurai",
+  "districtName": "Thanjavur"
+ },
+ {
+  "acName": "Papanasam",
+  "pcName": "Mayiladuthurai",
+  "districtName": "Thanjavur"
+ },
+ {
+  "acName": "Thiruvaiyaru",
+  "pcName": "Thanjavur",
+  "districtName": "Thanjavur"
+ },
+ {
+  "acName": "Thanjavur",
+  "pcName": "Thanjavur",
+  "districtName": "Thanjavur"
+ },
+ {
+  "acName": "Orathanadu",
+  "pcName": "Thanjavur",
+  "districtName": "Thanjavur"
+ },
+ {
+  "acName": "Pattukkottai",
+  "pcName": "Thanjavur",
+  "districtName": "Thanjavur"
+ },
+ {
+  "acName": "Peravurani",
+  "pcName": "Thanjavur",
+  "districtName": "Thanjavur"
+ },
+ {
+  "acName": "Gandarvakottai",
+  "pcName": "Tiruchirappalli",
+  "districtName": "Pudukkottai"
+ },
+ {
+  "acName": "Viralimalai",
+  "pcName": "Karur",
+  "districtName": "Pudukkottai"
+ },
+ {
+  "acName": "Pudukkottai",
+  "pcName": "Tiruchirappalli",
+  "districtName": "Pudukkottai"
+ },
+ {
+  "acName": "Thirumayam",
+  "pcName": "Sivaganga",
+  "districtName": "Pudukkottai"
+ },
+ {
+  "acName": "Alangudi",
+  "pcName": "Sivaganga",
+  "districtName": "Pudukkottai"
+ },
+ {
+  "acName": "Aranthangi",
+  "pcName": "Ramanathapuram",
+  "districtName": "Pudukkottai"
+ },
+ {
+  "acName": "Karaikudi",
+  "pcName": "Sivaganga",
+  "districtName": "Sivagangai"
+ },
+ {
+  "acName": "Tiruppattur",
+  "pcName": "Sivaganga",
+  "districtName": "Sivagangai"
+ },
+ {
+  "acName": "Sivaganga",
+  "pcName": "Sivaganga",
+  "districtName": "Sivagangai"
+ },
+ {
+  "acName": "Manamadurai",
+  "pcName": "Sivaganga",
+  "districtName": "Sivagangai"
+ },
+ {
+  "acName": "Melur",
+  "pcName": "Madurai",
+  "districtName": "Madurai"
+ },
+ {
+  "acName": "Madurai East",
+  "pcName": "Madurai",
+  "districtName": "Madurai"
+ },
+ {
+  "acName": "Sholavandan",
+  "pcName": "Theni",
+  "districtName": "Madurai"
+ },
+ {
+  "acName": "Madurai North",
+  "pcName": "Madurai",
+  "districtName": "Madurai"
+ },
+ {
+  "acName": "Madurai South",
+  "pcName": "Madurai",
+  "districtName": "Madurai"
+ },
+ {
+  "acName": "Madurai Central",
+  "pcName": "Madurai",
+  "districtName": "Madurai"
+ },
+ {
+  "acName": "Madurai West",
+  "pcName": "Madurai",
+  "districtName": "Madurai"
+ },
+ {
+  "acName": "Thiruparankundram",
+  "pcName": "Virudhunagar",
+  "districtName": "Madurai"
+ },
+ {
+  "acName": "Thirumangalam",
+  "pcName": "Virudhunagar",
+  "districtName": "Madurai"
+ },
+ {
+  "acName": "Usilampatti",
+  "pcName": "Theni",
+  "districtName": "Madurai"
+ },
+ {
+  "acName": "Andipatti",
+  "pcName": "Theni",
+  "districtName": "Theni"
+ },
+ {
+  "acName": "Periyakulam",
+  "pcName": "Theni",
+  "districtName": "Theni"
+ },
+ {
+  "acName": "Bodinayakanur",
+  "pcName": "Theni",
+  "districtName": "Theni"
+ },
+ {
+  "acName": "Cumbum",
+  "pcName": "Theni",
+  "districtName": "Theni"
+ },
+ {
+  "acName": "Rajapalayam",
+  "pcName": "Tenkasi",
+  "districtName": "Virudhunagar"
+ },
+ {
+  "acName": "Srivilliputhur",
+  "pcName": "Tenkasi",
+  "districtName": "Virudhunagar"
+ },
+ {
+  "acName": "Sattur",
+  "pcName": "Virudhunagar",
+  "districtName": "Virudhunagar"
+ },
+ {
+  "acName": "Sivakasi",
+  "pcName": "Virudhunagar",
+  "districtName": "Virudhunagar"
+ },
+ {
+  "acName": "Virudhunagar",
+  "pcName": "Virudhunagar",
+  "districtName": "Virudhunagar"
+ },
+ {
+  "acName": "Aruppukkottai",
+  "pcName": "Virudhunagar",
+  "districtName": "Virudhunagar"
+ },
+ {
+  "acName": "Tiruchuli",
+  "pcName": "Ramanathapuram",
+  "districtName": "Virudhunagar"
+ },
+ {
+  "acName": "Paramakudi",
+  "pcName": "Ramanathapuram",
+  "districtName": "Ramanathapuram"
+ },
+ {
+  "acName": "Tiruvadanai",
+  "pcName": "Ramanathapuram",
+  "districtName": "Ramanathapuram"
+ },
+ {
+  "acName": "Ramanathapuram",
+  "pcName": "Ramanathapuram",
+  "districtName": "Ramanathapuram"
+ },
+ {
+  "acName": "Mudhukulathur",
+  "pcName": "Ramanathapuram",
+  "districtName": "Ramanathapuram"
+ },
+ {
+  "acName": "Vilathikulam",
+  "pcName": "Thoothukkudi",
+  "districtName": "Thoothukudi"
+ },
+ {
+  "acName": "Thoothukkudi",
+  "pcName": "Thoothukkudi",
+  "districtName": "Thoothukudi"
+ },
+ {
+  "acName": "Tiruchendur",
+  "pcName": "Thoothukkudi",
+  "districtName": "Thoothukudi"
+ },
+ {
+  "acName": "Srivaikuntam",
+  "pcName": "Thoothukkudi",
+  "districtName": "Thoothukudi"
+ },
+ {
+  "acName": "Ottapidaram",
+  "pcName": "Thoothukkudi",
+  "districtName": "Thoothukudi"
+ },
+ {
+  "acName": "Kovilpatti",
+  "pcName": "Thoothukkudi",
+  "districtName": "Thoothukudi"
+ },
+ {
+  "acName": "Sankarankovil",
+  "pcName": "Tenkasi",
+  "districtName": "Tenkasi"
+ },
+ {
+  "acName": "Vasudevanallur",
+  "pcName": "Tenkasi",
+  "districtName": "Tenkasi"
+ },
+ {
+  "acName": "Kadayanallur",
+  "pcName": "Tenkasi",
+  "districtName": "Tenkasi"
+ },
+ {
+  "acName": "Tenkasi",
+  "pcName": "Tenkasi",
+  "districtName": "Tenkasi"
+ },
+ {
+  "acName": "Alangulam",
+  "pcName": "Tirunelveli",
+  "districtName": "Tenkasi"
+ },
+ {
+  "acName": "Tirunelveli",
+  "pcName": "Tirunelveli",
+  "districtName": "Tirunelveli"
+ },
+ {
+  "acName": "Ambasamudram",
+  "pcName": "Tirunelveli",
+  "districtName": "Tirunelveli"
+ },
+ {
+  "acName": "Palayamkottai",
+  "pcName": "Tirunelveli",
+  "districtName": "Tirunelveli"
+ },
+ {
+  "acName": "Nanguneri",
+  "pcName": "Tirunelveli",
+  "districtName": "Tirunelveli"
+ },
+ {
+  "acName": "Radhapuram",
+  "pcName": "Tirunelveli",
+  "districtName": "Tirunelveli"
+ },
+ {
+  "acName": "Kanniyakumari",
+  "pcName": "Kanniyakumari",
+  "districtName": "Kanniyakumari"
+ },
+ {
+  "acName": "Nagercoil",
+  "pcName": "Kanniyakumari",
+  "districtName": "Kanniyakumari"
+ },
+ {
+  "acName": "Colachal",
+  "pcName": "Kanniyakumari",
+  "districtName": "Kanniyakumari"
+ },
+ {
+  "acName": "Padmanabhapuram",
+  "pcName": "Kanniyakumari",
+  "districtName": "Kanniyakumari"
+ },
+ {
+  "acName": "Vilavancode",
+  "pcName": "Kanniyakumari",
+  "districtName": "Kanniyakumari"
+ },
+ {
+  "acName": "Killiyoor",
+  "pcName": "Kanniyakumari",
+  "districtName": "Kanniyakumari"
+ }
+]
