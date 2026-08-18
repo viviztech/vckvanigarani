@@ -91,7 +91,7 @@ export default function Register() {
   const canSubmit =
     fullName &&
     fatherOrHusbandName &&
-    phone &&
+    phone.length === 10 &&
     email &&
     address &&
     habitationOrStreet &&
@@ -107,7 +107,7 @@ export default function Register() {
       await publicApi.register({
         fullName,
         fatherOrHusbandName,
-        phone,
+        phone: `+91${phone}`,
         email,
         code,
         address,
@@ -168,13 +168,18 @@ export default function Register() {
 
         <div className="mb-4">
           <label className="field-label" htmlFor="r-phone">கைபேசி எண் (Mobile Number)</label>
-          <input
-            id="r-phone"
-            className="field-input"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder="+91XXXXXXXXXX"
-          />
+          <div className="flex items-stretch w-full min-h-[46px] rounded-xl border border-gray-200 overflow-hidden transition-all duration-200 focus-within:ring-2 focus-within:ring-blue-600 focus-within:border-blue-600">
+            <span className="flex items-center px-3 text-sm text-gray-500 bg-gray-50 border-r border-gray-200 select-none">+91</span>
+            <input
+              id="r-phone"
+              className="flex-1 min-w-0 px-3 text-sm text-gray-900 focus:outline-none"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+              inputMode="numeric"
+              maxLength={10}
+              placeholder="XXXXXXXXXX"
+            />
+          </div>
         </div>
 
         <div className="mb-4">

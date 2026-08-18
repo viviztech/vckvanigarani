@@ -255,7 +255,32 @@ export default function BearerForm() {
         </div>
         <div className="field">
           <label htmlFor="b-phone">கைபேசி எண் (Mobile Number)</label>
-          <input id="b-phone" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+91XXXXXXXXXX" />
+          <div style={{ display: 'flex', alignItems: 'stretch' }}>
+            <span
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                padding: '0 10px',
+                border: '1px solid var(--border)',
+                borderRight: 'none',
+                borderRadius: '4px 0 0 4px',
+                background: 'var(--bg)',
+                color: 'var(--text-muted)',
+                fontSize: 14,
+              }}
+            >
+              +91
+            </span>
+            <input
+              id="b-phone"
+              style={{ borderRadius: '0 4px 4px 0', flex: 1, minWidth: 0 }}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+              inputMode="numeric"
+              maxLength={10}
+              placeholder="XXXXXXXXXX"
+            />
+          </div>
         </div>
         <div className="field">
           <label htmlFor="b-email">மின்னஞ்சல் (Email) — login OTP is sent here</label>
@@ -365,7 +390,7 @@ export default function BearerForm() {
           disabled={
             !fullName ||
             !fatherOrHusbandName ||
-            !phone ||
+            phone.length !== 10 ||
             !email ||
             !address ||
             !habitationOrStreet ||
@@ -377,7 +402,7 @@ export default function BearerForm() {
             createBearerMutation.mutate({
               fullName,
               fatherOrHusbandName,
-              phone,
+              phone: `+91${phone}`,
               email,
               address,
               habitationOrStreet,
