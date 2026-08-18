@@ -21,6 +21,7 @@ import { RemindersModule } from './modules/reminders/reminders.module';
 import { NewsModule } from './modules/news/news.module';
 import { PublicModule } from './modules/public/public.module';
 import { PendingRegistrationsModule } from './modules/pending-registrations/pending-registrations.module';
+import { AdminScopesModule } from './modules/admin-scopes/admin-scopes.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { PendingRegistrationsModule } from './modules/pending-registrations/pend
     NewsModule,
     PublicModule,
     PendingRegistrationsModule,
+    AdminScopesModule,
   ],
   providers: [{ provide: APP_FILTER, useClass: HttpExceptionFilter }],
 })

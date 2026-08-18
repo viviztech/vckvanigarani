@@ -1,8 +1,11 @@
 import { NavLink, Outlet } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { useAuth } from '../auth/useAuth';
+import { adminScopesApi } from '../services/adminScopes';
 
 export default function Layout() {
   const { logOut } = useAuth();
+  const { data: myScope } = useQuery({ queryKey: ['admin-scopes', 'me'], queryFn: adminScopesApi.me });
 
   return (
     <div className="app-shell">
@@ -41,6 +44,11 @@ export default function Layout() {
         <NavLink to="/news/drafts" className={({ isActive }) => (isActive ? 'active' : '')}>
           Drafts
         </NavLink>
+        {myScope?.role === 'SUPER_ADMIN' && (
+          <NavLink to="/admins" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Admins
+          </NavLink>
+        )}
         <button className="secondary" style={{ marginTop: 16, width: '100%' }} onClick={logOut}>
           Log out
         </button>

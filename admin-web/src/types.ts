@@ -16,6 +16,7 @@ export type PostCapability = 'FINANCE_VIEW';
 export type PostBody = 'MAIN' | 'SUB';
 export type BearerStatus = 'ACTIVE' | 'INACTIVE';
 export type AssignmentStatus = 'ACTIVE' | 'CLOSED';
+export type AdminRole = 'SUPER_ADMIN' | 'STATE_ADMIN' | 'DISTRICT_ADMIN' | 'LOCAL_ADMIN';
 
 export interface Post {
   id: string;
@@ -105,6 +106,14 @@ export interface Assignment {
 
 export interface BearerDetail extends Bearer {
   assignments: Assignment[];
+}
+
+export interface AdminScope {
+  adminBearerId: string;
+  role: AdminRole;
+  scopeJurisdictionUnitId: string | null;
+  scopeJurisdictionUnit?: JurisdictionUnit | null;
+  adminBearer?: Bearer;
 }
 
 export interface CoverageReport {
