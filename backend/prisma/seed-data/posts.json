@@ -1,0 +1,50 @@
+[
+  { "name": "முதன்மைச் செயலாளர்", "body": "MAIN", "applicableLevels": ["STATE"], "rank": 1 },
+  { "name": "ஒருங்கிணைப்பாளர்", "body": "MAIN", "applicableLevels": ["STATE"], "rank": 2 },
+  {
+    "name": "நிதிச் செயலாளர்",
+    "body": "MAIN",
+    "applicableLevels": ["STATE"],
+    "capabilities": ["FINANCE_VIEW"],
+    "rank": 3
+  },
+  {
+    "name": "மாநிலச் செயலாளர்",
+    "body": "MAIN",
+    "applicableLevels": ["STATE"],
+    "jurisdictionTypeRule": "PARLIAMENT_CONSTITUENCY",
+    "jurisdictionExpandToChildren": false,
+    "rank": 4
+  },
+  {
+    "name": "மாநில துணைச் செயலாளர்",
+    "body": "MAIN",
+    "applicableLevels": ["STATE"],
+    "jurisdictionTypeRule": "PARLIAMENT_CONSTITUENCY",
+    "jurisdictionExpandToChildren": true,
+    "rank": 5
+  },
+  { "name": "மாவட்ட அமைப்பாளர்", "body": "MAIN", "applicableLevels": ["DISTRICT"], "rank": 6 },
+  {
+    "name": "மாவட்ட நிதிச் செயலாளர்",
+    "body": "MAIN",
+    "applicableLevels": ["DISTRICT"],
+    "capabilities": ["FINANCE_VIEW"],
+    "rank": 7
+  },
+  { "name": "மாவட்ட துணை அமைப்பாளர்", "body": "MAIN", "applicableLevels": ["DISTRICT"], "rank": 8 },
+  { "name": "ஒன்றிய அமைப்பாளர்", "body": "MAIN", "applicableLevels": ["BLOCK"], "rank": 9 },
+  { "name": "ஒன்றிய துணை அமைப்பாளர்", "body": "MAIN", "applicableLevels": ["BLOCK"], "rank": 10 },
+  {
+    "name": "நகர அமைப்பாளர்",
+    "body": "MAIN",
+    "applicableLevels": ["MUNICIPALITY", "TOWN_PANCHAYAT"],
+    "rank": 11
+  },
+  {
+    "name": "நகர துணை அமைப்பாளர்",
+    "body": "MAIN",
+    "applicableLevels": ["MUNICIPALITY", "TOWN_PANCHAYAT"],
+    "rank": 12
+  }
+]
